@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 import requests
 ```
 
-#### Using requests + BeautifulSoup
+#### Using requests
 Retrieving web data is super easy with the requests module:
 
 ```python
@@ -37,16 +37,16 @@ data = requests.get("https://github.com")
 
 ```
 
-But what we're really interested here is the ```.text``` option, which will give us the full html of the page. 
+But what we're really interested here is the ```.text``` option, which will give us the full html of the page -- this is what we need to create the BeautifulSoup object.
 
 #### Basic BeautifulSoup usage
-We'll use the raw html (retrieved through requests' ```.text``` method) to make the BeautifulSoup object for searching and retrieving data:
+We'll use the raw html (retrieved through requests' ```.text``` method) to make a new BeautifulSoup object for searching and retrieving data:
 
 ```python
 soup = BeautifulSoup(data.text)
 ```
 
-Search syntax is super simple. If I want a list of all the "a" tags on a given page, all I need is 
+Search syntax is super simple. If you want a list of all the "a" tags on a given page, all you need is 
 
 ```python
 soup("a")
@@ -58,13 +58,13 @@ To search by tag attribute instead, just search with the attribute as a keyword 
 soup(id="start-of-content")
 ```
 
-Since ```class``` is already a python keyword, if you want to find things by the html "class" attribute you'll need to add a trailing underscore:
+Since ```class``` is already a python keyword, to find things in the "class" attribute you'll need to add a trailing underscore to the keyword:
 
 ```python
 soup(class_="container")
 ```
 
-To search tag text instead, use the "string" keyword:
+To search tag text instead of attributes or tag types, use the "string" keyword:
 
 ```python
 soup(string="yolo")
@@ -78,11 +78,17 @@ soup(string=re.compile("hi!"))
 ```
 
 To use multiple facets, just chain them:
-```python
+```pythttps://github.com/walkerdb/dsc_workshops/edit/master/readme.md#hon
 soup("span", class_="octicon octicon-x", string=re.compile("yo"))
 ```
 
-**searching plain text**
+To retrieve the plaintext from a tag, all you need to do is access the ".text" value of the tag object:
+```python
+>>> first_p_tag = soup("p")[0]
+>>> first_p_tag.text
+"hello"
+```
+
 **getting text from tags**
 
 ### in progress
