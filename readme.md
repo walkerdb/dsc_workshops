@@ -46,12 +46,14 @@ We'll use the raw html (retrieved through requests' ```.text``` method) to make 
 soup = BeautifulSoup(data.text)
 ```
 
+##### searching by tag type
 Search syntax is super simple. If you want a list of all the "a" tags on a given page, all you need is 
 
 ```python
 soup("a")
 ```
 
+##### searching by tag attribute
 To search by tag attribute instead, just search with the attribute as a keyword variable. eg:
 
 ```python
@@ -64,12 +66,19 @@ Since ```class``` is already a python keyword, to find things in the "class" att
 soup(class_="container")
 ```
 
+To just search for tags that have a specific attribute, no matter the attribute's value, use
+```python
+soup(href=True)
+```
+
+##### searching by tag text
 To search tag text instead of attributes or tag types, use the "string" keyword:
 
 ```python
 soup(string="yolo")
 ```
 
+##### partial searches; multiple facets
 The above will only ever match if the entire tag text is exactly the given value. To do partial searches, you'll need to write out the search term as a regular expression:
 
 ```python
@@ -82,6 +91,7 @@ To use multiple facets, just chain them:
 soup("span", class_="octicon octicon-x", string=re.compile("yo"))
 ```
 
+##### retrieving text
 To retrieve the plaintext from a tag, all you need to do is access the ".text" value of the tag object:
 ```python
 >>> first_p_tag = soup("p")[0]
