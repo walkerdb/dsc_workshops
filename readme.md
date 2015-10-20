@@ -39,7 +39,7 @@ data = requests.get("https://github.com")
 
 But what we're really interested here is the ```.text``` option, which will give us the full html of the page -- this is what we need to create the BeautifulSoup object.
 
-#### Basic BeautifulSoup usage
+#### Searching through html with BeautifulSoup
 We'll use the raw html (retrieved through requests' ```.text``` method) to make a new BeautifulSoup object for searching and retrieving data:
 
 ```python
