@@ -13,11 +13,11 @@ At a high level, doing this programmatically is actually a pretty simple two-ste
 
 #### Setup
 We'll be using two 3rd-party modules for this: one for requesting the web pages (_requests_), and another to read them (_BeautifulSoup4_). To install these, just run 
-```
+```bash
 pip install requests
 ``` 
 and 
-```
+```bash
 pip install bs4
 ``` 
 from the command line. If you're on a mac and get some kind of permissions error, try throwing a in a ```sudo``` at the beginning.
@@ -70,6 +70,19 @@ We'll use the raw html (retrieved through requests' ```.text``` method) to make 
 soup = BeautifulSoup(data.text)
 ```
 
+##### a quick review of HTML structure
+This is probably review for many of you, but to use BeautifulSoup to its fullest, you'll need to know some of the basics of how HTML data is structured. There are only just a few things you need to know: HTML is made of __tags__, which look like this:
+```
+<p></p>
+```
+Every tag has an opening and closing element, and everything in between is considered a "child" of that tag. Tags very often nest inside one another. Tags also can have __attributes__, which all have a value. Attributes look like this:
+
+```html
+<p class="description">
+```
+
+In this case ```class``` is an attribute of the tag ```p```, with a value of ```description```.
+
 ##### searching by tag type
 Search syntax is super simple. If you want a list of all the "a" tags on a given page, all you need is 
 
@@ -95,7 +108,7 @@ To just search for tags that have a specific attribute, no matter the attribute'
 soup(href=True)
 ```
 
-##### searching by tag text
+##### searching by exact tag text
 To search tag text instead of attributes or tag types, use the "string" keyword:
 
 ```python
@@ -111,12 +124,12 @@ soup(string=re.compile("hi!"))
 ```
 
 To use multiple facets, just chain them:
-```pythttps://github.com/walkerdb/dsc_workshops/edit/master/readme.md#hon
+```python
 soup("span", class_="octicon octicon-x", string=re.compile("yo"))
 ```
 
 ##### retrieving text
-To retrieve the plaintext from a tag, all you need to do is access the ".text" value of the tag object:
+Once you have a single tag selected, to retrieve its text all you need to do is access the ".text" value of the tag object:
 ```python
 >>> first_p_tag = soup("p")[0]
 >>> first_p_tag.text
