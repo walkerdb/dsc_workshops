@@ -1,11 +1,13 @@
 
 ## Web scraping
-#### Draft in progress
-So here is the problem: we want to get at some set of data online -- bibliographic records, movie reviews, wikipedia entries, blog posts, what-have-you -- but it's all mixed up in html and distributed through thousands or even hundreds of thousands of web pages. Retrieving the data by hand is not feasible, so what can you do?
+#### Intro
+So here is the problem: we want to get at some large set of data online -- bibliographic records, movie reviews, wikipedia entries, blog posts, what-have-you -- but it's all mixed up in html and distributed through thousands or even hundreds of thousands of web pages. Retrieving the data by hand is not feasible, so what can you do? The answer: Python!
+
+At a high level, doing this programmatically is actually a pretty simple two-step process: step one is to request a web page with python; then step two is to use a python tool for searching through html to extract and save the info we're looking for. After repeating this for all the web pages we're interested in (using either some pattern we've uncovered in how the site is structured, or some other list of links from an index), we'll have all the data we're looking for in some kind of structured form in a single file.
 
 
 ####Before doing anything!
-* take a look at the site's data use terms if you can find them
+* take a look at the site's data use terms if you can find them -- this has implications for the ways in which you can present your results.
 * stop to check if you can use an api instead - usually this will be faster and easier on the host's bandwidth
 
 
