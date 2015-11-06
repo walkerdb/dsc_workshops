@@ -1,15 +1,26 @@
 
 ## Web scraping
 #### Draft in progress
+So here is the problem: we want to get at some set of data online -- bibliographic records, movie reviews, wikipedia entries, blog posts, what-have-you -- but it's all mixed up in html and distributed through thousands or even hundreds of thousands of web pages. Retrieving the data by hand is not feasible, so what can you do?
 
-0. take a look at the site's data use terms if you can find them
-0. stop to check if you can use an api instead
-1. 
+
+####Before doing anything!
+* take a look at the site's data use terms if you can find them
+* stop to check if you can use an api instead - usually this will be faster and easier on the host's bandwidth
+
 
 #### Setup
-We'll be using two 3rd-party modules for this: one for requesting the web pages (requests), and another to read them (beautiful soup 4). To install these, just run ```pip install requests``` and ```pip install bs4``` from the command line.
+We'll be using two 3rd-party modules for this: one for requesting the web pages (_requests_), and another to read them (_BeautifulSoup4_). To install these, just run 
+```
+pip install requests
+``` 
+and 
+```
+pip install bs4
+``` 
+from the command line. If you're on a mac and get some kind of permissions error, try throwing a in a ```sudo``` at the beginning.
 
-First we'll import the libraries we'll be using:
+Now that we have the libraries in place, we'll get started with a web-scraping script. First, make a new python file and import the libraries we'll be using:
 
 ```python
 from bs4 import BeautifulSoup
@@ -17,7 +28,7 @@ import requests
 ```
 
 #### Using requests
-Retrieving web data is super easy with the requests module:
+Requests makes retrieving web data is super easy:
 
 ```python
 data = requests.get("https://github.com")
@@ -35,11 +46,22 @@ data = requests.get("https://github.com")
 >>> data.status_code
 200
 
+>>> data.text
+u'''
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    [...etc.]
+'''
+
 ```
 
-But what we're really interested here is the ```.text``` option, which will give us the full html of the page -- this is what we need to create the BeautifulSoup object.
+For our immediate purposes, what we're really interested here is the ```.text``` option, which gives us the raw html text of the page -- this is what we need to create the BeautifulSoup object.
 
-#### Searching through html with BeautifulSoup
+#### Searching through html with BeautifulSoup...
 We'll use the raw html (retrieved through requests' ```.text``` method) to make a new BeautifulSoup object for searching and retrieving data:
 
 ```python
