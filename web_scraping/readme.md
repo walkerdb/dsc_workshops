@@ -138,4 +138,8 @@ Once you have a single tag selected, to retrieve its text all you need to do is 
 
 **getting text from tags**
 
-### in progress
+### examples!
+
+#### song lyrics
+
+#### papyrus datasets?
