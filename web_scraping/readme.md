@@ -12,7 +12,7 @@ At a high level, doing this programmatically is actually a pretty simple two-ste
 
 
 ## Setup
-We'll be using two 3rd-party modules for this: one for requesting the web pages (_requests_), and another to read them (_BeautifulSoup4_). To install these, just run 
+We'll be using two 3rd-party modules for this: one for requesting the web pages [(_requests_)](https://github.com/kennethreitz/requests), and another to read them [(_BeautifulSoup4_)](http://www.crummy.com/software/BeautifulSoup/bs4/doc/). To install these, just run 
 ```bash
 pip install requests
 ``` 
