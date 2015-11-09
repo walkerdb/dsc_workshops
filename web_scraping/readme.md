@@ -86,16 +86,16 @@ Remember the requests object we made earlier? To make a new BeautifulSoup object
 soup = BeautifulSoup(data.text)
 ```
 
-## finding tags
+### finding tags
 
-### searching by tag type
+##### searching by tag type
 Search syntax is super simple. If you want a list of all the "a" tags on a given page, all you need is 
 
 ```python
 soup("a")
 ```
 
-### searching by tag attribute
+##### searching by tag attribute
 To search by tag attribute instead, just search with the attribute as a keyword variable. eg:
 
 ```python
@@ -113,14 +113,14 @@ To just search for tags that have a specific attribute, no matter the attribute'
 soup(href=True)
 ```
 
-### searching by exact tag text
+##### searching by exact tag text
 To search tag text instead of attributes or tag types, use the "string" keyword:
 
 ```python
 soup(string="yolo")
 ```
 
-### partial searches; multiple facets
+##### partial searches; multiple facets
 The above will only ever match if the entire tag text is exactly the given value. To do partial searches, you'll need to write out the search term as a regular expression:
 
 ```python
@@ -133,11 +133,11 @@ To use multiple facets, just chain them:
 soup("span", class_="octicon octicon-x", string=re.compile("yo"))
 ```
 
-## extracting data
+### extracting data
 
 Once you've narrowed down a tag to get things from, there are a few things you can do to get at its contents:
 
-### retrieving text
+##### retrieving text
 Once you have a single tag selected, to retrieve its text all you need to do is access the ".text" value of the tag object:
 ```python
 >>> first_p_tag = soup("p")[0]
@@ -145,7 +145,7 @@ Once you have a single tag selected, to retrieve its text all you need to do is 
 "hello"
 ```
 
-### retrieving attribute values
+##### retrieving attribute values
 Attributes are accessed just like values in a python dictionary, with the attribute name as a key. So, if we've selected a tag that looks like this
 ```html
 <a href="http://www.google.com">Link here!</a>
