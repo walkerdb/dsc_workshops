@@ -86,7 +86,7 @@ Remember the requests object we made earlier? To make a new BeautifulSoup object
 soup = BeautifulSoup(data.text)
 ```
 
-### finding tags
+## finding tags
 
 ##### searching by tag type
 Search syntax is super simple. If you want a list of all the "a" tags on a given page, all you need is 
@@ -133,7 +133,7 @@ To use multiple facets, just chain them:
 soup("span", class_="octicon octicon-x", string=re.compile("yo"))
 ```
 
-### extracting data
+## extracting data
 
 Once you've narrowed down a tag to get things from, there are a few things you can do to get at its contents:
 
