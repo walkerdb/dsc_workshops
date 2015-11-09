@@ -64,22 +64,23 @@ u'''
 For our immediate purposes, what we're really interested here is the ```.text``` option, which gives us the raw html text of the page -- this is what we need to create the BeautifulSoup object.
 
 ## Using BeautifulSoup
+BeautifulSoup gives you a clean and relatively straight-forward interface to find and extract specific parts of an html document. The basic gist is to use various search methods to narrow down to one html tag or set of tags, from which you can grab the exact data you're looking for.
 
 ### a quick review of HTML structure
 This is probably review for many of you, but to use BeautifulSoup you'll need to know some of the basics of how HTML data is structured. There are only just a few things you need to know: HTML is made of __tags__, which look like this:
 ```
-<p></p>
+<p>text</p>
 ```
 Every tag has an opening and closing element, and between those elements there can either be text, other tags, or both. If a tag is inside of another tag, the first tag is often called a "parent", and the one inside of it a "child". Tags also can have __attributes__, which look like this:
 
 ```html
-<p class="description">
+<p class="description">text</p>
 ```
 
 In this case ```class``` is an attribute of the tag ```p```, with a value of ```description```.
 
 ### making the BeautifulSoup object
-We'll use the raw html (retrieved through requests' ```.text``` method) to make a new BeautifulSoup object for searching and retrieving data:
+Remember the requests object we made earlier? To make a new BeautifulSoup object we just need to feed it the raw html text of the page we requested:
 
 ```python
 soup = BeautifulSoup(data.text)
@@ -138,7 +139,17 @@ Once you have a single tag selected, to retrieve its text all you need to do is 
 "hello"
 ```
 
+### retrieving attribute values
+Attributes are accessed just like values in a python dictionary, with the attribute name as a key. So, if we've selected a tag that looks like this
+```html
+<a href="http://www.google.com">Link here!</a>
+```
+and wanted to get to the web address contained in the href attribute, all you need to do is:
 
+```python
+>>> selected_a_tag["href"]
+"http://www.google.com"
+```
 
 ## examples!
 
