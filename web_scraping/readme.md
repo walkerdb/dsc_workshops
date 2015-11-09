@@ -63,25 +63,27 @@ u'''
 
 For our immediate purposes, what we're really interested here is the ```.text``` option, which gives us the raw html text of the page -- this is what we need to create the BeautifulSoup object.
 
-## Searching through html with BeautifulSoup...
-We'll use the raw html (retrieved through requests' ```.text``` method) to make a new BeautifulSoup object for searching and retrieving data:
-
-```python
-soup = BeautifulSoup(data.text)
-```
+## Using BeautifulSoup
 
 ### a quick review of HTML structure
-This is probably review for many of you, but to use BeautifulSoup to its fullest, you'll need to know some of the basics of how HTML data is structured. There are only just a few things you need to know: HTML is made of __tags__, which look like this:
+This is probably review for many of you, but to use BeautifulSoup you'll need to know some of the basics of how HTML data is structured. There are only just a few things you need to know: HTML is made of __tags__, which look like this:
 ```
 <p></p>
 ```
-Every tag has an opening and closing element, and everything in between is considered a "child" of that tag. Tags very often nest inside one another. Tags also can have __attributes__, which all have a value. Attributes look like this:
+Every tag has an opening and closing element, and between those elements there can either be text, other tags, or both. If a tag is inside of another tag, the first tag is often called a "parent", and the one inside of it a "child". Tags also can have __attributes__, which look like this:
 
 ```html
 <p class="description">
 ```
 
 In this case ```class``` is an attribute of the tag ```p```, with a value of ```description```.
+
+### making the BeautifulSoup object
+We'll use the raw html (retrieved through requests' ```.text``` method) to make a new BeautifulSoup object for searching and retrieving data:
+
+```python
+soup = BeautifulSoup(data.text)
+```
 
 ### searching by tag type
 Search syntax is super simple. If you want a list of all the "a" tags on a given page, all you need is 
