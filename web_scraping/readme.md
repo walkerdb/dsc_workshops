@@ -30,7 +30,7 @@ import requests
 ```
 
 ## Using requests
-Requests makes retrieving web data is super easy:
+Requests makes retrieving web pages super easy:
 
 ```python
 data = requests.get("https://github.com")
