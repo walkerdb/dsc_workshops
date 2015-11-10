@@ -153,6 +153,20 @@ and wanted to get to the web address contained in the href attribute, all you ne
 "http://www.google.com"
 ```
 
+## A web-scraping workflow
+So, now that we know the basics of how to use the tools, how do we go about applying them?
+
+Let's say we're interested in gathering data on popular song lyrics. Once you've identified a potential data source, step one is to take a look at the html code for a representative entry.
+
+[example of this]
+
+The idea here is to get an idea of the structure of the page, and to see if there are any obvious ways to point BeautifulSoup at the right data. The most ideal case is when the tag holding the data you want has an "id" attribute, since this is unique, and can be used to narrow down the search immediately.
+
+Once you have a general idea of how you might try to get at the data, it's often helpful to try some quick and dirty prototyping in IDLE.
+
+[demo]
+
+[to be continued...]
 ## examples!
 
 ### song lyrics
