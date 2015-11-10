@@ -1,23 +1,19 @@
 
 # Web scraping
 ### Intro
-So here is the problem: we want to get at some large set of data online -- bibliographic records, movie reviews, wikipedia entries, blog posts, what-have-you -- but it's all mixed up in html and distributed through thousands or even hundreds of thousands of web pages. Retrieving the data by hand is not feasible, so what can you do? The answer: Python!
+So here is the problem: we want to get at some large set of data online -- bibliographic records, movie reviews, wikipedia entries, blog posts, what-have-you -- but it's all mixed up in html and distributed through thousands or even hundreds of thousands of web pages. Retrieving the data by hand is not feasible, so what can you do? The answer: scrape it!
 
-At a high level, doing this programmatically is actually a pretty simple two-step process: step one is to request a web page with python; then step two is to use a python tool for searching through html to extract and save the info we're looking for. After repeating this for all the web pages we're interested in (using either some pattern we've uncovered in how the site is structured, or some other list of links from an index), we'll have all the data we're looking for in some kind of structured form in a single file.
+At a high level, doing this programmatically is actually a pretty simple two-step process: step one is to request a web page through code; then step two is to use some tool for searching through html to extract and save the info we're looking for. After repeating this for all the web pages we're interested in (using either some pattern we've uncovered in how the site is structured, or some other list of links from an index), we'll have all the data we're looking for in some kind of structured form, all in a single place.
 
-
-### Before doing anything!
-* take a look at the site's data use terms if you can find them -- this has implications for the ways in which you can present your results.
-* stop to check if you can use an api instead - usually this will be faster and easier on the host's bandwidth
-
+Here's how to do that:
 
 ## Setup
 We'll be using two 3rd-party modules for this: one for requesting the web pages [(_requests_)](https://github.com/kennethreitz/requests), and another to read them [(_BeautifulSoup4_)](http://www.crummy.com/software/BeautifulSoup/bs4/doc/). To install these, just run 
-```bash
+```
 pip install requests
 ``` 
 and 
-```bash
+```
 pip install bs4
 ``` 
 from the command line. If you're on a mac and get some kind of permissions error, try throwing a in a ```sudo``` at the beginning.
@@ -64,7 +60,7 @@ u'''
 For our immediate purposes, what we're really interested here is the ```.text``` option, which gives us the raw html text of the page -- this is what we need to create the BeautifulSoup object.
 
 ## Using BeautifulSoup
-BeautifulSoup gives you a clean and relatively straight-forward interface to find and extract specific parts of an html document. The basic gist is to use various search methods to narrow down to one html tag or set of tags, from which you can grab the exact data you're looking for.
+BeautifulSoup gives you a clean and relatively straight-forward interface to find and extract specific parts of an html document. The basic gist is to use various search methods to narrow down to one html tag or set of tags, and from there you can grab the exact data you're looking for.
 
 ### a quick review of HTML structure
 This is probably review for many of you, but to use BeautifulSoup you'll need to know some of the basics of how HTML data is structured. There are only just a few things you need to know: HTML is made of __tags__, which look like this:
@@ -80,7 +76,7 @@ Every tag has an opening and closing element, and between those elements there c
 In this case ```class``` is an attribute of the tag ```p```, with a value of ```description```.
 
 ### making the BeautifulSoup object
-Remember the requests object we made earlier? To make a new BeautifulSoup object we just need to feed it the raw html text of the page we requested:
+Remember the requests object we made earlier? To get BeautifulSoup up and running we just need to feed it the raw html text of the page we requested:
 
 ```python
 soup = BeautifulSoup(data.text)
