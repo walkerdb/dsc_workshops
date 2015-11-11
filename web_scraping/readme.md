@@ -167,7 +167,19 @@ Once you have a general idea of how you might try to get at the data, it's often
 [demo]
 
 [to be continued...]
-## examples!
+## try your own!
+
+* grab course numbers, titles, and descriptions from the public SI [course catalog](https://www.si.umich.edu/programs/courses/catalog)
+* find and download all the pdf files on this page
+  * _hint: take a look at the requests [something] method_
+
+### API challenge
+* See if you can work out how to use _requests_ and the HathiTrust bib API to retrieve json-formatted bibliographic records for all the books on this page
+  * _hint: the oclc numbers might be useful_
+* Try using the 
+
+### Dealing with dynamic data
+* Some websites require some amount of user interaction to load new data. [talk about selenium problem here]
 
 ### song lyrics
 
