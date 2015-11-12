@@ -158,7 +158,7 @@ So, now that we know the basics of how to use the tools, how do we go about appl
 
 Let's say we're interested in gathering data on popular song lyrics. Once you've identified a potential data source, step one is to take a look at the html code for a representative entry.
 
-![viewing source code of a webpage](https://gyazo.com/0cea2864c05acf57f56c6849bd18f562)
+![viewing source code of a webpage](https://i.gyazo.com/0cea2864c05acf57f56c6849bd18f562.gif)
 
 The idea here is to get an idea of the structure of the page, and to see if there are any obvious ways to point BeautifulSoup at the right data. The most ideal case is when the tag holding the data you want has an "id" attribute, since this is unique, and can be used to narrow down the search immediately.
 
