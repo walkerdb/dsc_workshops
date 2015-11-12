@@ -165,6 +165,8 @@ import re
 soup(string=re.compile("hi!"))
 ```
 
+_a note about regular expressions in python_: many non-alphabetic characters have special meanings in the regular expression language (for example, a period is a wild-card character and not a period) -- if you aren't familiar with regular expressions in python it may be best to precede all non-alphanumeric characters with a forward-slash ("\"), which will ensure that they mean what you intend them to mean.
+
 ##### multiple facets
 To use multiple search facets, just chain them:
 ```python
@@ -199,19 +201,19 @@ and wanted to get to the web address contained in the href attribute, all you ne
 ### Step 1: Look at the source
 So, now that we know the basics of how to use the tools, how do we go about applying them?
 
-Let's say we're interested in gathering data on popular song lyrics. Once you've identified a potential data source, step one is to take a look at the html code for the part of the page holding the data you're looking for.
+Let's say we're doing a research project on the evolution of [Taylor Swift lyrics](http://www.azlyrics.com/t/taylorswift.html) over the last decade, and we need the raw text for all of her songs. Once we've identified a potential data source, step one is to take a look at the source code to see if you can eyeball some ways you might use beautifulsoup to get at the data you want.
 
-Looking directly through the source code can be a bit of a slog, but fortunately there's a better way: if you right-click on the specific element in either Firefox or Chrome, you can bring up an interactive view of that exact html by selecting "inspect element":
+Looking directly through the source code can be a bit of a slog, but fortunately there's a better way: if you right-click on the specific element you want to extract things from in either Firefox or Chrome, you can bring up an interactive view of that exact html by selecting "inspect element":
 
 <img src="http://i.imgur.com/gqkYLSZ.gif" width=600/>
 
 Once the inspect pane comes up you can do a little exploration to see if there are any obvious ways to point BeautifulSoup at the right data. The most ideal case is when the tag holding the data you want has an "id" attribute, since this is unique, and can be used to narrow down the search immediately.
 
 ### Step 2: play around with a prototype
-Once you have a general idea of how you might try to get at the data, it's often helpful to try some quick and dirty prototyping in IDLE.
+Once you have a general idea of how you might try to get at the data, it's often helpful to try some quick and dirty prototyping in IDLE. [demo!]
 
 ### Step 3: write out code for a single page
-asd
+
 
 ### Step 4: loop through every page, __with a delay__
 
