@@ -76,7 +76,7 @@ Every tag has an opening and closing element, and between those elements there c
 In this case ```class``` is an attribute of the tag ```p```, with a value of ```description```.
 
 ### making the BeautifulSoup object
-Remember the requests object we made earlier? To get BeautifulSoup up and running we just need to feed it the raw html text of the page we requested:
+To get BeautifulSoup up and running we just need to feed it the raw html text of the page we requested, using the web-page object requests created:
 
 ```python
 soup = BeautifulSoup(data.text)
@@ -85,7 +85,7 @@ soup = BeautifulSoup(data.text)
 ## finding tags
 
 ##### searching by tag type
-Search syntax is super simple. If you want a list of all the "a" tags on a given page, all you need is 
+Search syntax is super simple. If you want a list of all the "a" tags on a given page, all you need to do is 
 
 ```python
 soup("a")
@@ -173,7 +173,7 @@ Once you have a general idea of how you might try to get at the data, it's often
 ### Step 3: write out code for a single page
 asd
 
-### Step 4: loop through every page
+### Step 4: loop through every page, __with a delay__
 
 ### Step 5: write out the results!
 
@@ -183,8 +183,14 @@ asd
 If any of the following seem interesting, give it a try!
 
 * grab course numbers, titles, and descriptions from the public SI [course catalog](https://www.si.umich.edu/programs/courses/catalog)
+
+-------------------------
+
 * Extract all the comments from [this hackernews article](https://news.ycombinator.com/item?id=6097155) and save them in a .CSV file (just the comment texts only - don't need to preserve any of the comment hierarchies)
   * See this file for an example of how to write a csv file
+
+------------------------------
+
 * Find the audio file on [this page](http://www.library.ucsb.edu/OBJID/Cylinder9861) and save it to your computer, using only python.
   * _hint: you can use the request.get() method on files, too_
   * _see this python file for an example of what this might look like_
@@ -192,7 +198,6 @@ If any of the following seem interesting, give it a try!
 ### API challenge
 * See if you can work out how to use _requests_ and the HathiTrust bib API to retrieve json-formatted bibliographic records for all the books on this page
   * _hint: the oclc numbers might be useful_
-* Try using the 
 
 ### Dealing with dynamic data
 * Some websites require some amount of user interaction to load new data. [talk about selenium problem here]
