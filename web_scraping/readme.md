@@ -36,7 +36,7 @@ There are two things to always keep in mind when making a web scraper:
 
   ```Crawl-Delay``` is what we're interested in here -- in this case the LOC prefers a 2-second delay between a scraper's html requests.
 
-2. Always make sure your scraper is identified as a scraper
+2. __Always make sure your scraper is identified as a scraper__
   * this is really easy to do using the user-agent header -- more on this further below
 
 ## Setup
