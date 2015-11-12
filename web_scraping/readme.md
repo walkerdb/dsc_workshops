@@ -284,11 +284,14 @@ You can do this however you like, but I recommend using the csv format - it's re
 # python has a library for reading and writing csv files - let's import it first
 import csv
 
-# let's say our results are stored as a list of lists, looking something like this:
-# [["text 1", "text 2", "text 3"],
-#  ["text 1", "text 2", "text 3"],
-#  etc.
-# ]
+# note: if you're using python 3, replace the next line with the following:
+# with open("output.csv.", mode="w", newline="") as f:
+with open("output.csv", mode="wb") as f:
+    writer = csv.Writer(f)
+    headers = ["source link", "text"]
+    
+    writer.writerow(headers)
+    writer.writerows(results)
 
 ```
 
