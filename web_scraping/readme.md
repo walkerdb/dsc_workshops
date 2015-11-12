@@ -5,7 +5,16 @@ So here is the problem: we want to get at some large set of data online -- bibli
 
 At a high level, doing this programmatically is actually a pretty simple two-step process: step one is to request a web page through code; then step two is to use some tool for searching through html to extract and save the info we're looking for. After repeating this for all the web pages we're interested in (using either some pattern we've uncovered in how the site is structured, or some other list of links from an index), we'll have all the data we're looking for in some kind of structured form, all in a single place.
 
-Here's how to do that:
+This tutorial shows one way to do that.
+
+## Scraping etiquette
+There are two things to always keep in mind when making a web scraper:
+
+1. Always put a delay between requests - usually at least one second
+  * Take a look at the host's robots.txt file: this will occasionally include their preferred delay between requests
+
+2. Always make sure your scraper is identified as such
+  * this is really easy to do using the user-agent http header -- more on this further below
 
 ## Setup
 We'll be using two 3rd-party modules for this: one for requesting the web pages ([_requests_](https://github.com/kennethreitz/requests)), and another to read them ([_BeautifulSoup4_](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)). To install these, just run 
@@ -31,6 +40,15 @@ Requests makes retrieving web pages super easy:
 ```python
 data = requests.get("https://github.com")
 ```
+
+Since we're consciensious scrapers, we should identify where these requests are coming from. This is pretty straightforward:
+
+```python
+headers = {"user-agent": "Name of your scraper"}  # you can call this whatever you want
+data = requests.get("https://github.com", headers=headers)
+```
+
+Now whenever the administrators of the target site look at their access logs, our entries will include the name of the scraper. Some folks also include a contact email address in the user-agent text so that administrators can contact them if there is a problem.
 
 ```requests.get``` returns a web-page object that hold all sorts of interesting data. For example, 
 
