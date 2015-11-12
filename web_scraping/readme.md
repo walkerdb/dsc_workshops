@@ -246,8 +246,8 @@ poem_text = get_poem_text_from_page("https://it.wikisource.org/wiki/Canzoniere_(
 ### Step 4: loop through every page, __with a delay__, and add each result to a results list
 We'll need to somehow get at the list of links to every poem in the publication, which we can do by scraping all the right ```<a href="...">``` tags in the publication page. Then we can apply the poem extraction code to each of those, with a delay in between each request. After first trying some exploration and prototyping to find ways to get at those links, this is what that might look like:
 ```python
-# we'll need the re library to do partial link matching later on
-import re
+import re  # for making partial matches with BeautifulSoup
+import time  # for making delays between requests
 
 # get the publication page source, and make the soup
 publication_page_data = requests.get("https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)", headers=headers)
@@ -267,6 +267,8 @@ for link in links
   
     # Add the results, along with the link used to get there, to the results list
     results.append([link, poem_text])
+    
+    time.sleep(1)
 
 ```
 
@@ -282,8 +284,6 @@ import csv
 #  ["text 1", "text 2", "text 3"],
 #  etc.
 # ]
-
-
 
 ```
 
