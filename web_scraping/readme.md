@@ -40,7 +40,7 @@ There are two things to always keep in mind when making a web scraper:
   * this is really easy to do using the user-agent header -- more on this further below
 
 ## Setup
-We'll be using two 3rd-party modules for this: one for requesting the web pages ([_requests_](https://github.com/kennethreitz/requests)), and another to read them ([_BeautifulSoup4_](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)). To install these, just run 
+We'll be using python and two 3rd-party python modules: one for requesting the web pages ([_requests_](https://github.com/kennethreitz/requests)), and another to read them ([_BeautifulSoup4_](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)). To install these, just run 
 ```
 pip install requests
 ``` 
@@ -64,7 +64,7 @@ Requests makes retrieving web pages super easy:
 data = requests.get("https://github.com")
 ```
 
-Since we're consciensious scrapers, we should identify where these requests are coming from. This is pretty straightforward:
+Since we're consciensious scrapers, we should also identify where these requests are coming from. This is pretty straightforward:
 
 ```python
 headers = {"user-agent": "Name of your scraper"}  # you can call this whatever you want
@@ -157,7 +157,7 @@ To search tag text instead of attributes or tag types, use the "string" keyword:
 soup(string="yolo")
 ```
 
-##### partial searches; multiple facets
+##### partial searches
 The above will only ever match if the entire tag text is exactly the given value. To do partial searches, you'll need to write out the search term as a regular expression:
 
 ```python
@@ -165,7 +165,8 @@ import re
 soup(string=re.compile("hi!"))
 ```
 
-To use multiple facets, just chain them:
+##### multiple facets
+To use multiple search facets, just chain them:
 ```python
 soup("span", class_="octicon octicon-x", string=re.compile("yo"))
 ```
@@ -198,15 +199,13 @@ and wanted to get to the web address contained in the href attribute, all you ne
 ### Step 1: Look at the source
 So, now that we know the basics of how to use the tools, how do we go about applying them?
 
-Let's say we're interested in gathering data on popular song lyrics. Once you've identified a potential data source, step one is to take a look at the html code for a representative entry.
+Let's say we're interested in gathering data on popular song lyrics. Once you've identified a potential data source, step one is to take a look at the html code for the part of the page holding the data you're looking for.
 
-<img src="http://i.imgur.com/mijGS7R.gif" width=600/>
-
-The idea here is to get an idea of the structure of the page, and to see if there are any obvious ways to point BeautifulSoup at the right data. The most ideal case is when the tag holding the data you want has an "id" attribute, since this is unique, and can be used to narrow down the search immediately.
-
-Looking directly through the source code can be a bit of a slog - if you can see exactly where on the page the info you want is living, both Firefox and Chrome have some great functionality that saves a lot of time. Just right-click on the part of the page you're interested in and select "inspect element":
+Looking directly through the source code can be a bit of a slog, but fortunately there's a better way: if you right-click on the specific element in either Firefox or Chrome, you can bring up an interactive view of that exact html by selecting "inspect element":
 
 <img src="http://i.imgur.com/gqkYLSZ.gif" width=600/>
+
+Once the inspect pane comes up you can do a little exploration to see if there are any obvious ways to point BeautifulSoup at the right data. The most ideal case is when the tag holding the data you want has an "id" attribute, since this is unique, and can be used to narrow down the search immediately.
 
 ### Step 2: play around with a prototype
 Once you have a general idea of how you might try to get at the data, it's often helpful to try some quick and dirty prototyping in IDLE.
