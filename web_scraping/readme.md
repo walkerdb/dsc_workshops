@@ -35,12 +35,14 @@ There are two things to always keep in mind when making a web scraper:
   ```
 
   ```Crawl-Delay``` is what we're interested in here -- in this case the LOC prefers a 2-second delay between a scraper's html requests.
+  
+ Delays are really easy to code, using python's built-in ```time``` library - just import the library and add ```time.sleep(2)``` or however many seconds you'd like to delay for somewhere in your scraping loop.
 
 2. __Always make sure your scraper is identified as a scraper__
-  * this is really easy to do using the user-agent header -- more on this further below
+  * this is done using what is known as the "user-agent" header -- more on this further below
 
 ## Setup
-We'll be using python and two 3rd-party python modules: one for requesting the web pages ([_requests_](https://github.com/kennethreitz/requests)), and another to read them ([_BeautifulSoup4_](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)). To install these, just run 
+We'll be using python and two 3rd-party python modules: one for requesting the web pages ([_requests_](https://github.com/kennethreitz/requests)), and another to search through them ([_BeautifulSoup4_](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)). To install these, just run 
 ```
 pip install requests
 ``` 
@@ -201,23 +203,89 @@ and wanted to get to the web address contained in the href attribute, all you ne
 ### Step 1: Look at the source
 So, now that we know the basics of how to use the tools, how do we go about applying them?
 
-Let's say we're doing a research project on the evolution of [Taylor Swift lyrics](http://www.azlyrics.com/t/taylorswift.html) over the last decade, and we need the raw text for all of her songs. Once we've identified a potential data source, step one is to take a look at the source code to see if you can eyeball some ways you might use beautifulsoup to get at the data you want.
+Let's say we're doing a research project on early Italian poetry, and we need the raw text for every poem in a particular manuscript. Once we've identified a potential data source (in this instance, wikisource), step one is to take a look at the source code of [one of the target pages](https://it.wikisource.org/wiki/Canzoniere_\(Rerum_vulgarium_fragmenta\)/Lasciato_%C3%A0i,_Morte,_senza_sole_il_mondo) to see if you can eyeball some ways you might use beautifulsoup to get at the data you want.
 
 Looking directly through the source code can be a bit of a slog, but fortunately there's a better way: if you right-click on the specific element you want to extract things from in either Firefox or Chrome, you can bring up an interactive view of that exact html by selecting "inspect element":
 
 <img src="http://i.imgur.com/ODHXIgR.gif" width=800/>
 
+If you're using Safari you'll need to manually enable this by going into settings -> advanced and checking the right check mark. 
+
 Once the inspect pane comes up you can do a little exploration to see if there are any obvious ways to point BeautifulSoup at the right data. The most ideal case is when the tag holding the data you want has an "id" attribute, since this is unique, and can be used to narrow down the search immediately.
 
 ### Step 2: play around with a prototype
-Once you have a general idea of how you might try to get at the data, it's often helpful to try some quick and dirty prototyping in IDLE. [demo!]
+Once you have a general idea of how you might try to get at the data, it's often helpful to try some quick and dirty prototyping in IDLE to narrow down the exact details. [demo!]
 
 ### Step 3: write out code for a single page
+Based on the prototyping, here is what that might look like:
+```python
+import requests
+from bs4 import BeautifulSoup
 
+# setting identifying headers to be used whenever we make a request:
+headers = {"user-agent": "Poem scraper v.0.1 - please contact email@address.com if there are any issues"}
 
-### Step 4: loop through every page, __with a delay__
+# we're putting the scraping code for the single page into a function, so that we can use it multiple times
+def get_poem_text_from_page(web_address)
+  # making the request, with proper identifiers
+  data = requests.get(web_address, headers=headers)
+  
+  # make the BeautifulSoup object so that you can do the search
+  soup = BeautifulSoup(data.text)
+  
+  # remember that the soup search always returns a list, even when you know there will only be
+  # one result, so to get at the actual object just access the first element in the list:
+  poem_text = soup(class_="poem")[0].text
+  
+  return poem_text
+  
+# requesting the text for a specific page
+poem_text = get_poem_text_from_page("https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Lasciato_%C3%A0i,_Morte,_senza_sole_il_mondo")
+```
+
+### Step 4: loop through every page, __with a delay__, and add each result to a results list
+We'll need to somehow get at the list of links to every poem in the publication, which we can do by scraping all the right ```<a href="...">``` tags in the publication page. Then we can apply the poem extraction code to each of those, with a delay in between each request. After first trying some exploration and prototyping to find ways to get at those links, this is what that might look like:
+```python
+# we'll need the re library to do partial link matching later on
+import re
+
+# get the publication page source, and make the soup
+publication_page_data = requests.get("https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)", headers=headers)
+
+soup = BeautifulSoup(publication_page_data.text)
+
+# grab all the links to individual poems by finding all of the tags with an href-value that contains the match text
+links = soup(href=re.compile("wiki\/Canzoniere"))
+
+# make a results list to store each poem's text in
+results = []
+for link in links
+  # the links were relative, so we need to reconstruct the absolute value
+  link = "https://it.wikisource.org" + link 
+  
+  poem_text = get_poem_text_from_page(link)
+  
+  # Add the results, along with the link used to get there, to the results list
+  results.append([link, poem_text])
+
+```
 
 ### Step 5: write out the results!
+You can do this however you like, but I recommend using the csv format - it's really versatile, and can be imported into excel or google sheets if you want your data there. Here is some skeleton code for how you might do that:
+
+```python
+# python has a library for reading and writing csv files - let's import it first
+import csv
+
+# let's say our results are stored as a list of lists, looking something like this:
+# [["text 1", "text 2", "text 3"],
+#  ["text 1", "text 2", "text 3"],
+#  etc.
+# ]
+
+
+
+```
 
 [demo]
 
