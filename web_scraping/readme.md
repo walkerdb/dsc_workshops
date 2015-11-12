@@ -227,6 +227,7 @@ headers = {"user-agent": "Poem scraper v.0.1 - please contact email@address.com 
 
 # we're putting the scraping code for the single page into a function, so that we can use it multiple times
 def get_poem_text_from_page(web_address)
+
     # making the request, with proper identifiers
     data = requests.get(web_address, headers=headers)
   
@@ -259,7 +260,10 @@ links = soup(href=re.compile("wiki\/Canzoniere"))
 
 # make a results list to store each poem's text in
 results = []
+
+# run through every matching link found in the parent page
 for link in links
+
     # the links were relative, so we need to reconstruct the absolute value
     link = "https://it.wikisource.org" + link 
   
@@ -268,6 +272,7 @@ for link in links
     # Add the results, along with the link used to get there, to the results list
     results.append([link, poem_text])
     
+    # wait one second before continuing
     time.sleep(1)
 
 ```
