@@ -10,11 +10,34 @@ This tutorial shows one way to do that.
 ## Scraping etiquette
 There are two things to always keep in mind when making a web scraper:
 
-1. Always put a delay between requests - usually at least one second
-  * Take a look at the host's robots.txt file: this will occasionally include their preferred delay between requests
+1. __Always put a delay between requests__, usually at least one second
+  * If you don't do this, you're at risk of accidentally DDOSing the site. This is bad news.
 
-2. Always make sure your scraper is identified as such
-  * this is really easy to do using the user-agent http header -- more on this further below
+  It's usually a good idea to take a look at the host's robots.txt file: this will occasionally include the site's preferred delay time. You can usually get to a robots.txt file by just adding "/robots.txt" to the base web address of the host. 
+
+  For example, here is the Library of Congress's robots.txt, from https://www.loc.gov/robots.txt:
+  ```
+  User-agent: 008
+  Disallow: /	
+  
+  User-agent: *
+  Disallow: /cgi-bin/
+  Disallow: /web_arch/
+  Disallow: /rr/mopic/staff
+  Disallow: /loc/volunteers
+  Disallow: /ficmanagers
+  Disallow: /preserv/extranet/
+  Disallow: /myloc
+  Disallow: /nationalfilmregistry
+  Disallow: /fedsearch
+  Disallow: /search
+  Crawl-Delay: 2
+  ```
+
+  ```Crawl-Delay``` is what we're interested in here -- in this case the LOC prefers a 2-second delay between a scraper's html requests.
+
+2. Always make sure your scraper is identified as a scraper
+  * this is really easy to do using the user-agent header -- more on this further below
 
 ## Setup
 We'll be using two 3rd-party modules for this: one for requesting the web pages ([_requests_](https://github.com/kennethreitz/requests)), and another to read them ([_BeautifulSoup4_](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)). To install these, just run 
