@@ -205,7 +205,7 @@ Let's say we're doing a research project on the evolution of [Taylor Swift lyric
 
 Looking directly through the source code can be a bit of a slog, but fortunately there's a better way: if you right-click on the specific element you want to extract things from in either Firefox or Chrome, you can bring up an interactive view of that exact html by selecting "inspect element":
 
-<img src="http://i.imgur.com/ODHXIgR.gif" width=600/>
+<img src="http://i.imgur.com/ODHXIgR.gif" width=800/>
 
 Once the inspect pane comes up you can do a little exploration to see if there are any obvious ways to point BeautifulSoup at the right data. The most ideal case is when the tag holding the data you want has an "id" attribute, since this is unique, and can be used to narrow down the search immediately.
 
