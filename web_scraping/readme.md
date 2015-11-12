@@ -154,19 +154,31 @@ and wanted to get to the web address contained in the href attribute, all you ne
 ```
 
 ## A web-scraping workflow
+### Step 1: Look at the source
 So, now that we know the basics of how to use the tools, how do we go about applying them?
 
 Let's say we're interested in gathering data on popular song lyrics. Once you've identified a potential data source, step one is to take a look at the html code for a representative entry.
 
-<img src="http://i.imgur.com/mijGS7R.gif" width=100/>
+<img src="http://i.imgur.com/mijGS7R.gif" width=600/>
 
 The idea here is to get an idea of the structure of the page, and to see if there are any obvious ways to point BeautifulSoup at the right data. The most ideal case is when the tag holding the data you want has an "id" attribute, since this is unique, and can be used to narrow down the search immediately.
 
+Looking directly through the source code can be a bit of a slog - if you can see exactly where on the page the info you want is living, both Firefox and Chrome have some great functionality that saves a lot of time. Just right-click on the part of the page you're interested in and select "inspect element":
+
+<img src="http://i.imgur.com/gqkYLSZ.gif" width=600/>
+
+### Step 2: play around with a prototype
 Once you have a general idea of how you might try to get at the data, it's often helpful to try some quick and dirty prototyping in IDLE.
+
+### Step 3: write out code for a single page
+asd
+
+### Step 4: loop through every page
+
+### Step 5: write out the results!
 
 [demo]
 
-[to be continued...]
 ## try your own!
 If any of the following seem interesting, give it a try!
 
