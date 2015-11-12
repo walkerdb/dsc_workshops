@@ -46,7 +46,7 @@ pip install requests
 ``` 
 and 
 ```
-pip install bs4
+pip install beautifulsoup4
 ``` 
 from the command line. If you're on a mac and get some kind of permissions error, try throwing a in a ```sudo``` at the beginning.
 
