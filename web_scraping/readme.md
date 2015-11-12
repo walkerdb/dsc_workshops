@@ -227,17 +227,17 @@ headers = {"user-agent": "Poem scraper v.0.1 - please contact email@address.com 
 
 # we're putting the scraping code for the single page into a function, so that we can use it multiple times
 def get_poem_text_from_page(web_address)
-  # making the request, with proper identifiers
-  data = requests.get(web_address, headers=headers)
+    # making the request, with proper identifiers
+    data = requests.get(web_address, headers=headers)
   
-  # make the BeautifulSoup object so that you can do the search
-  soup = BeautifulSoup(data.text)
+    # make the BeautifulSoup object so that you can do the search
+    soup = BeautifulSoup(data.text)
   
-  # remember that the soup search always returns a list, even when you know there will only be
-  # one result, so to get at the actual object just access the first element in the list:
-  poem_text = soup(class_="poem")[0].text
+    # remember that the soup search always returns a list, even when you know there will only be
+    # one result, so to get at the actual object just access the first element in the list:
+    poem_text = soup(class_="poem")[0].text
   
-  return poem_text
+    return poem_text
   
 # requesting the text for a specific page
 poem_text = get_poem_text_from_page("https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Lasciato_%C3%A0i,_Morte,_senza_sole_il_mondo")
@@ -260,13 +260,13 @@ links = soup(href=re.compile("wiki\/Canzoniere"))
 # make a results list to store each poem's text in
 results = []
 for link in links
-  # the links were relative, so we need to reconstruct the absolute value
-  link = "https://it.wikisource.org" + link 
+    # the links were relative, so we need to reconstruct the absolute value
+    link = "https://it.wikisource.org" + link 
   
-  poem_text = get_poem_text_from_page(link)
+    poem_text = get_poem_text_from_page(link)
   
-  # Add the results, along with the link used to get there, to the results list
-  results.append([link, poem_text])
+    # Add the results, along with the link used to get there, to the results list
+    results.append([link, poem_text])
 
 ```
 
