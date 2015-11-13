@@ -248,7 +248,7 @@ Once you have a general idea of how you might try to get at the data, it's often
 
 So just fire up your interpreter, import requests and beautifulsoup, then just try out some sample searches and see what comes up. Here's what that might look like with the "poem" class idea:
 
-<img src="http://i.imgur.com/FKKMXjJ.gif" width=800/>
+<img src="http://i.imgur.com/kdUhtji.gif" width=800/>
 
 ### Step 3: write out code for a single page
 Based on the prototyping, here is what that might look like:
