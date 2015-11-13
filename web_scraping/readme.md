@@ -54,7 +54,13 @@ There are two things to always keep in mind when making a web scraper:
 
 
 ## Using requests
-Requests makes retrieving web pages super easy:
+Requests makes retrieving web pages super easy. First, import the libary:
+
+```python
+import requests
+```
+
+then just make the page request:
 
 ```python
 data = requests.get("https://github.com")
@@ -116,6 +122,8 @@ In this case ```class``` is an attribute of the tag ```p```, with a value of ```
 To get BeautifulSoup up and running we just need to feed it the raw html text of the page we requested, using the web-page object requests created:
 
 ```python
+from bs4 import BeautifulSoup
+
 soup = BeautifulSoup(data.text)
 ```
 
