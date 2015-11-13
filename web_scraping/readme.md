@@ -200,8 +200,16 @@ and wanted to get to the web address contained in the href attribute, all you ne
 ```
 
 ## A web-scraping workflow
+So, now that we know the basics of how to use the tools, how do we go about applying them? After doing this for a while, I've settled on a workflow for scraping that works pretty well for me. It boils down to this:
+1. Look at the source of a target page
+2. Play around with a prototype to narrow down bs4 search terms
+3. Write out the code for a single page
+4. Write out the code to loop through all pages
+5. Write the results to a file
+
+And that's it! Here are those steps in more detail:
+
 ### Step 1: Look at the source
-So, now that we know the basics of how to use the tools, how do we go about applying them?
 
 Let's say we're doing a research project on early Italian poetry, and we need the raw text for every poem in a particular manuscript. Once we've identified a potential data source (in this instance, wikisource), step one is to take a look at the source code of [one of the target pages](https://it.wikisource.org/wiki/Canzoniere_\(Rerum_vulgarium_fragmenta\)/Lasciato_%C3%A0i,_Morte,_senza_sole_il_mondo) to see if you can eyeball some ways you might use beautifulsoup to get at the data you want.
 
@@ -295,7 +303,57 @@ with open("output.csv", mode="wb") as f:
 
 ```
 
-[demo]
+And that's it! Here is what that looks like all put together, with minimal comments:
+
+```python
+# import all the libraries
+import re
+import csv
+import time
+
+import requests
+from bs4 import BeautifulSoup
+
+# headers, to properly identify the scraper to the target site
+headers = {"user-agent": "Poem scraper v.0.1 - please contact email@address.com if there are any issues"}
+
+# code to extract data for a single page
+def get_poem_text_from_page(web_address)
+    data = requests.get(web_address, headers=headers)
+    soup = BeautifulSoup(data.text)
+    poem_text = soup(class_="poem")[0].text
+  
+    return poem_text
+    
+# get links to all the pages we want to extract data from
+publication_page_data = requests.get("https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)", headers=headers)
+
+soup = BeautifulSoup(publication_page_data.text)
+links = soup(href=re.compile("wiki\/Canzoniere"))
+
+# extract data from all pages
+results = []
+for link in links
+    link = "https://it.wikisource.org" + link 
+  
+    poem_text = get_poem_text_from_page(link)
+  
+    results.append([link, poem_text])
+    
+    time.sleep(1)
+    
+
+# write the results to file
+
+# note: if you're using python 3, replace the next line with the following:
+# with open("output.csv.", mode="w", newline="") as f:
+with open("output.csv", mode="wb") as f:
+    writer = csv.Writer(f)
+    headers = ["source link", "text"]
+    
+    writer.writerow(headers)
+    writer.writerows(results)
+```
 
 ## try your own!
 If any of the following seem interesting, give it a try!
