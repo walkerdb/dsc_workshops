@@ -72,14 +72,14 @@ then just make the page request:
 data = requests.get("https://github.com")
 ```
 
-Since we're consciensious scrapers, we should also identify where these requests are coming from. This is pretty straightforward:
+Since we're consciensious scrapers, we should also identify where these requests are coming from. To do this, you'll need to make a new dictionary, with "user-agent" as a key and the name of your scraper as the value, then pass that dictionary into requests.get()'s headers option:
 
 ```python
 headers = {"user-agent": "Name of your scraper"}  # you can call this whatever you want
 data = requests.get("https://github.com", headers=headers)
 ```
 
-Now whenever the administrators of the target site look at their access logs, our entries will include the name of the scraper. Some folks also include a contact email address in the user-agent text so that administrators can contact them if there is a problem.
+Now whenever the administrators of the target site look at their access logs, our entries will include the name of our scraper. Some folks also include a contact email address in the user-agent text so that administrators can contact them if there is a problem.
 
 ```requests.get``` returns a web-page object that hold all sorts of interesting data. For example, 
 
