@@ -53,7 +53,7 @@ There are two things to always keep in mind when making a web scraper:
 
   ```Crawl-Delay``` is what we're interested in here -- in this case the LOC prefers a 2-second delay between a scraper's html requests.
   
- Delays are really easy to code, using python's built-in ```time``` library - just import the library and add ```time.sleep(2)``` or however many seconds you'd like to delay for somewhere in your scraping loop.
+ Delays are really easy to code, using python's built-in ```time``` library - just import the library and add ```time.sleep(2)``` or however many seconds you'd like to delay for somewhere in your scraping loop. You can see this in action in the full example scraper code down at the bottom of this document.
 
 2. __Always make sure your scraper is identified as a scraper__
   * this is done using what is known as the "user-agent" header -- more on this further below
