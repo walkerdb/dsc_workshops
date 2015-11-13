@@ -246,12 +246,29 @@ def get_poem_text_from_page(web_address):
     
     return poem_text
   
-# requesting the text for a specific page
-poem_text = get_poem_text_from_page("https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Lasciato_%C3%A0i,_Morte,_senza_sole_il_mondo")
+# print out the text for a specific page, just to show it worked
+print(get_poem_text_from_page("https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Lasciato_%C3%A0i,_Morte,_senza_sole_il_mondo"))
 ```
 
 ### Step 4: loop through every page, __with a delay__, and add each result to a results list
-We'll need to somehow get at the list of links to every poem in the publication, which we can do by scraping all the right ```<a href="...">``` tags in the publication page. Then we can apply the poem extraction code to each of those, with a delay in between each request. After first trying some exploration and prototyping to find ways to get at those links, this is what that might look like:
+We'll need to somehow get at the list of links to every poem in the publication, which we can do by scraping all the right ```<a href="...">``` tags in the publication page. Then we can apply the poem extraction code to each of those, with a delay in between each request. 
+
+There are usually two main ways to go about doing this. The first and often easiest method is to take a look at the web address of one of the pages we'll be scraping from to see if there is any kind of pattern we could take away from it to programmatically generate the addresses of each page we're looking for. For example, if you have a web address like [this](http://www.loc.gov/jukebox/recordings/detail/id/1425) (from the National Jukebox):
+
+```
+http://www.loc.gov/jukebox/recordings/detail/id/1425
+```
+
+you'll notice that it ends with a number. This should be your first hint that you might be able to write some code to automatically generate all the addresses for material in that collection. To check that, try going in and changing that number, and see what happens.
+
+In that example, you could write a script that just appends increasing sequential numbers to the base address, and you'd be able to get at every record in the collection.
+
+In our current example, the poetry texts, it doesn't look like there is any simple pattern like that. The alternative option is to try to find an index somewhere online that has the links to all the material we're looking for, and scrape the addresses from that index page. In this case, we can look at the page for the publication as a whole, [here](https://it.wikisource.org/wiki/Canzoniere_\(Rerum_vulgarium_fragmenta\))
+
+
+So, we'll go into that page and use the same methods we used in step one and two to narrow down a way to extract just the links we're looking for.
+
+After first trying some exploration and prototyping to find ways to get at those links, this is what that might look like:
 ```python
 import re  # for making partial matches with BeautifulSoup
 import time  # for making delays between requests
@@ -263,6 +280,9 @@ soup = BeautifulSoup(publication_page_data.text)
 
 # grab all the tags linking to individual poems by finding all of the tags with an href-value that contains the match text
 a_tags = soup(href=re.compile("wiki\/Canzoniere"))
+
+# The first link we matched isn't actually to a poem, so we'll just remove it
+a_tags.pop(0)
 
 # make a results list to store each poem's text in
 results = []
@@ -328,8 +348,9 @@ publication_page_data = requests.get("https://it.wikisource.org/wiki/Canzoniere_
 
 soup = BeautifulSoup(publication_page_data.text)
 a_tags = soup(href=re.compile("wiki/Canzoniere"))
+a_tags.pop(0) # removing an incorrect tag
 
-# extract data from all pages
+# extract data from all pages we got the links to
 results = []
 for a_tag in a_tags:
     link = "https://it.wikisource.org" + a_tag["href"]
@@ -359,18 +380,14 @@ If any of the following seem interesting, give it a try!
 
 -------------------------
 
-* Extract all the comments from [this hackernews article](https://news.ycombinator.com/item?id=6097155) and save them in a .CSV file (just the comment texts only - don't need to preserve any of the comment hierarchies)
-  * See this file for an example of how to write a csv file
+* Extract all the comments from [this hackernews article](https://news.ycombinator.com/item?id=6097155) and save them in a .CSV file (just the comment texts only - no need to preserve any of the comment hierarchies)
 
 ------------------------------
 
 * Find the audio file on [this page](http://www.library.ucsb.edu/OBJID/Cylinder9861) and save it to your computer, using only python.
-  * _hint: you can use the request.get() method on files, too_
-  * _see this python file for an example of what this might look like_
+  * _hint: you can use the request.get() method on files, too -- just use ```.content``` instead of ```.text``` to get at its actual data_
 
 ### API challenge
-* See if you can work out how to use _requests_ and the HathiTrust bib API to retrieve json-formatted bibliographic records for all the books on this page
-  * _hint: the oclc numbers might be useful_
+* See if you can work out how to use _requests_ and the [HathiTrust bibliographic API](https://www.hathitrust.org/bib_api) to retrieve json-formatted bibliographic records for one of the books on [this page](http://catalog.hathitrust.org/Record/009212663)
+  * _hint: try looking at the links in that page to see if you can extract an item's HathiTrust ID number_
 
-### Dealing with dynamic data
-* Some websites require some amount of user interaction to load new data. [talk about selenium problem here]
