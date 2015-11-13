@@ -241,8 +241,14 @@ If you're using Safari you'll need to manually enable this by going into setting
 
 Once the inspect pane comes up you can do a little exploration to see if there are any obvious ways to point BeautifulSoup at the right data. The most ideal case is when the tag holding the data you want has an "id" attribute, since this is unique, and can be used to narrow down the search immediately.
 
+In this case we can see that the poem text has a parent ```<div>``` tag that has a "poem" class attribute. This seems like a promising entry point.
+
 ### Step 2: play around with a prototype
-Once you have a general idea of how you might try to get at the data, it's often helpful to try some quick and dirty prototyping in IDLE to narrow down the exact details. [demo!]
+Once you have a general idea of how you might try to get at the data, it's often helpful to try some quick and dirty prototyping in IDLE to narrow down the exact details. 
+
+So just fire up your interpreter, import requests and beautifulsoup, then just try out some sample searches and see what comes up. Here's what that might look like with the "poem" class idea:
+
+<img src="http://i.imgur.com/FKKMXjJ.gif" width=800/>
 
 ### Step 3: write out code for a single page
 Based on the prototyping, here is what that might look like:
