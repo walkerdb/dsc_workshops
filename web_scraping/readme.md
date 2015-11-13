@@ -1,5 +1,5 @@
 
-# Web scraping
+# Web scraping 101
 ### Intro
 So here is the problem: we want to get at some large set of data online -- bibliographic records, movie reviews, wikipedia entries, blog posts, what-have-you -- but it's all mixed up in html and distributed through thousands or even hundreds of thousands of web pages. Retrieving the data by hand is not feasible, so what can you do? The answer: scrape it!
 
