@@ -336,9 +336,8 @@ links = soup(href=re.compile("wiki\/Canzoniere"))
 results = []
 for link in links
     link = "https://it.wikisource.org" + link 
-  
     poem_text = get_poem_text_from_page(link)
-  
+    
     results.append([link, poem_text])
     
     time.sleep(1)
