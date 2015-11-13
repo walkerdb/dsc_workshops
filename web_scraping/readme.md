@@ -16,7 +16,13 @@ and
 ```
 pip install beautifulsoup4
 ``` 
-from the command line. If you're on a mac and get some kind of permissions error, try throwing a in a ```sudo``` at the beginning.
+from the command line. If you're on a mac and get some kind of permissions error, try throwing a in a ```sudo``` at the beginning. 
+
+If you're still getting errors, your python probably isn't configured properly. If you're on windows, you can try the following from the command-line (replace "27" with whatever python version you have installed - likely either 27 or 34 or 35):
+```
+C:\python27\python.exe -m pip install requests beautifulsoup4
+```
+If that doesn't work, then I'd probably just recommend googling things related to "pip not working windows" or the same for mac and going from there.
 
 ## Scraping etiquette
 There are two things to always keep in mind when making a web scraper:
