@@ -352,6 +352,8 @@ with open("output.csv", mode="wb") as f:
 
 ```
 
+The file will be written to whatever directory you're running the script from.
+
 And that's it! Here is what that looks like all put together, with minimal comments:
 
 ```python
@@ -363,10 +365,10 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
-# headers, to properly identify the scraper to the target site
+# headers, to identify the scraper to the target site
 headers = {"user-agent": "Poem scraper v.0.1 - please contact email@address.com if there are any issues"}
 
-# code to extract data for a single page
+# code to extract data from a single page
 def get_poem_text_from_page(web_address):
     data = requests.get(web_address, headers=headers)
     soup = BeautifulSoup(data.text)
