@@ -251,7 +251,7 @@ So just fire up your interpreter, import requests and beautifulsoup, then just t
 <img src="http://i.imgur.com/kdUhtji.gif" width=800/>
 
 ### Step 3: write out code for a single page
-Now that we know exactly what BeautifulSoup searches to run to get at the data we want, we can formally write out that code in a new python file. Based on our prototyping in IDLE, here is what that might look like:
+Now that we know exactly what BeautifulSoup searches to run to get at the data we want, we can formally write out that code in a new python file. Based on our prototyping in IDLE, here is what that might look like (we'll call the file poem_scraper.py):
 ```python
 import requests
 from bs4 import BeautifulSoup
