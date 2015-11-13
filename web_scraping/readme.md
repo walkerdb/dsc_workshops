@@ -229,7 +229,7 @@ from bs4 import BeautifulSoup
 headers = {"user-agent": "Poem scraper v.0.1 - please contact email@address.com if there are any issues"}
 
 # we're putting the scraping code for the single page into a function, so that we can use it multiple times
-def get_poem_text_from_page(web_address)
+def get_poem_text_from_page(web_address):
 
     # making the request, with proper identifiers
     data = requests.get(web_address, headers=headers)
@@ -240,7 +240,10 @@ def get_poem_text_from_page(web_address)
     # remember that the soup search always returns a list, even when you know there will only be
     # one result, so to get at the actual object just access the first element in the list:
     poem_text = soup(class_="poem")[0].text
-  
+    
+    # since there are likely special characters in the text, we'll need to make sure they're handled properly:
+    poem_text = poem_text.encode("utf-8")
+    
     return poem_text
   
 # requesting the text for a specific page
@@ -258,17 +261,17 @@ publication_page_data = requests.get("https://it.wikisource.org/wiki/Canzoniere_
 
 soup = BeautifulSoup(publication_page_data.text)
 
-# grab all the links to individual poems by finding all of the tags with an href-value that contains the match text
-links = soup(href=re.compile("wiki\/Canzoniere"))
+# grab all the tags linking to individual poems by finding all of the tags with an href-value that contains the match text
+a_tags = soup(href=re.compile("wiki\/Canzoniere"))
 
 # make a results list to store each poem's text in
 results = []
 
 # run through every matching link found in the parent page
-for link in links
+for a_tag in a_tags:
 
     # the links were relative, so we need to reconstruct the absolute value
-    link = "https://it.wikisource.org" + link 
+    link = "https://it.wikisource.org" + a_tag["href"] 
   
     poem_text = get_poem_text_from_page(link)
   
@@ -313,23 +316,23 @@ from bs4 import BeautifulSoup
 headers = {"user-agent": "Poem scraper v.0.1 - please contact email@address.com if there are any issues"}
 
 # code to extract data for a single page
-def get_poem_text_from_page(web_address)
+def get_poem_text_from_page(web_address):
     data = requests.get(web_address, headers=headers)
     soup = BeautifulSoup(data.text)
     poem_text = soup(class_="poem")[0].text
   
-    return poem_text
+    return poem_text.encode("utf-8")
     
 # get links to all the pages we want to extract data from
 publication_page_data = requests.get("https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)", headers=headers)
 
 soup = BeautifulSoup(publication_page_data.text)
-links = soup(href=re.compile("wiki\/Canzoniere"))
+a_tags = soup(href=re.compile("wiki/Canzoniere"))
 
 # extract data from all pages
 results = []
-for link in links
-    link = "https://it.wikisource.org" + link 
+for a_tag in a_tags:
+    link = "https://it.wikisource.org" + a_tag["href"]
     poem_text = get_poem_text_from_page(link)
     
     results.append([link, poem_text])
@@ -342,10 +345,10 @@ for link in links
 # note: if you're using python 3, replace the next line with the following:
 # with open("output.csv.", mode="w", newline="") as f:
 with open("output.csv", mode="wb") as f:
-    writer = csv.Writer(f)
-    headers = ["source link", "text"]
+    writer = csv.writer(f)
+    header = ["source link", "text"]
     
-    writer.writerow(headers)
+    writer.writerow(header)
     writer.writerows(results)
 ```
 
