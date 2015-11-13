@@ -201,6 +201,7 @@ and wanted to get to the web address contained in the href attribute, all you ne
 
 ## A web-scraping workflow
 So, now that we know the basics of how to use the tools, how do we go about applying them? After doing this for a while, I've settled on a workflow for scraping that works pretty well for me. It boils down to this:
+
 1. Look at the source of a target page
 2. Play around with a prototype to narrow down bs4 search terms
 3. Write out the code for a single page
