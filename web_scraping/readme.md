@@ -352,7 +352,7 @@ with open("output.csv", mode="wb") as f:
 
 ```
 
-The file will be written to whatever directory you're running the script from.
+__note__: In this case, the file will be written to whatever directory you're running the script from. If you want to write to somewhere else, you'll need to use an absolute filepath: instead of just ```"output.csv"``` you would need to do something like ```r"C:\Users\username\Desktop\output.csv"``` on windows or ```"/Users/username/Desktop/output.csv"``` on a mac.
 
 And that's it! Here is what that looks like all put together, with minimal comments:
 
