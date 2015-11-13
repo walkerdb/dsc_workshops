@@ -377,7 +377,3 @@ If any of the following seem interesting, give it a try!
 
 ### Dealing with dynamic data
 * Some websites require some amount of user interaction to load new data. [talk about selenium problem here]
-
-### song lyrics
-
-### papyrus datasets?
