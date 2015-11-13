@@ -180,7 +180,18 @@ _a note about regular expressions in python_: many non-alphabetic characters hav
 ##### multiple facets
 To use multiple search facets, just chain them:
 ```python
-soup("span", class_="octicon octicon-x", string=re.compile("yo"))
+soup("span", class_="octicon octicon-x", string=re.compile("hi"))
+```
+
+This example will find all the tags of type ```span```, with a class attribute whose value is exactly ```octicon octicon-x```, whose text contains the string ```hi```. For example, it would match to this tag:
+
+```html
+<span class_="octicon octicon-x">octocat says hi</span>
+```
+
+but not this tag:
+```html
+<span class_="octicon octicon-x">text</span>
 ```
 
 ## extracting data
