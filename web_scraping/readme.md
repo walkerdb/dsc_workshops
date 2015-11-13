@@ -7,6 +7,17 @@ At a high level, doing this programmatically is actually a pretty simple two-ste
 
 This tutorial shows one way to do that.
 
+## Setup
+We'll be using python and two 3rd-party python modules: one for requesting the web pages ([_requests_](https://github.com/kennethreitz/requests)), and another to search through them ([_BeautifulSoup4_](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)). To install these, just run 
+```
+pip install requests
+``` 
+and 
+```
+pip install beautifulsoup4
+``` 
+from the command line. If you're on a mac and get some kind of permissions error, try throwing a in a ```sudo``` at the beginning.
+
 ## Scraping etiquette
 There are two things to always keep in mind when making a web scraper:
 
@@ -41,23 +52,6 @@ There are two things to always keep in mind when making a web scraper:
 2. __Always make sure your scraper is identified as a scraper__
   * this is done using what is known as the "user-agent" header -- more on this further below
 
-## Setup
-We'll be using python and two 3rd-party python modules: one for requesting the web pages ([_requests_](https://github.com/kennethreitz/requests)), and another to search through them ([_BeautifulSoup4_](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)). To install these, just run 
-```
-pip install requests
-``` 
-and 
-```
-pip install beautifulsoup4
-``` 
-from the command line. If you're on a mac and get some kind of permissions error, try throwing a in a ```sudo``` at the beginning.
-
-Now that we have the libraries in place, we'll get started with a web-scraping script. First, make a new python file and import the libraries we'll be using:
-
-```python
-from bs4 import BeautifulSoup
-import requests
-```
 
 ## Using requests
 Requests makes retrieving web pages super easy:
