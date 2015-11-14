@@ -344,7 +344,7 @@ import csv
 # note: if you're using python 3, replace the next line with the following:
 # with open("output.csv.", mode="w", newline="") as f:
 with open("output.csv", mode="wb") as f:
-    writer = csv.Writer(f)
+    writer = csv.writer(f)
     headers = ["source link", "text"]
     
     writer.writerow(headers)
