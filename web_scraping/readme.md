@@ -27,15 +27,21 @@ If you're still getting errors, your python probably isn't configured properly. 
 ```
 C:\python27\python.exe -m pip install requests beautifulsoup4
 ```
-If that doesn't work, then I'd probably just recommend googling things related to "pip not working windows" or the same for mac and going from there.
+
+or on a mac
+```
+python -m pip install requests beautifulsoup4
+```
+
+If that doesn't work, and you're sure you have python installed, then I'd recommend googling things related to "pip not working windows" or the same for mac and going from there.
 
 ## Scraping etiquette
-There are two things to always keep in mind when making a web scraper:
+Before we get to the code, there are two things you absolutely need to keep in mind while building a scraper:
 
 1. __Always put a delay between requests__, usually at least one second
   * If you don't do this, you're at risk of accidentally DDOSing the site. This is bad news.
 
-  It's usually a good idea to take a look at the host's robots.txt file: this will occasionally include the site's preferred delay time. You can usually get to a robots.txt file by just adding "/robots.txt" to the base web address of the host. 
+  It's often a good idea to take a look at the host's [robots.txt](https://en.wikipedia.org/wiki/Robots_exclusion_standard) file: this will occasionally include the site's preferred delay time. You can usually get to a robots.txt file by just adding "/robots.txt" to the base web address of the host. 
 
   For example, here is the Library of Congress's robots.txt, from https://www.loc.gov/robots.txt:
   ```
@@ -58,14 +64,14 @@ There are two things to always keep in mind when making a web scraper:
 
   ```Crawl-Delay``` is what we're interested in here -- in this case the LOC prefers a 2-second delay between a scraper's html requests.
   
- Delays are really easy to code, using python's built-in ```time``` library - just import the library and add ```time.sleep(2)``` or however many seconds you'd like to delay for somewhere in your scraping loop. You can see this in action in the full example scraper code down at the bottom of this document.
+ Delays are really easy to code, using python's built-in ```time``` library - just import the library and add ```time.sleep(2)``` or however many seconds you'd like to delay for somewhere in your scraping loop. You can see this in action in the full example scraping code down at the bottom of this document.
 
 2. __Always make sure your scraper is identified as a scraper__
   * this is done using what is known as the "user-agent" header -- more on this further below
 
 
 ## Using requests
-Requests makes retrieving web pages super easy. First, import the libary:
+_Requests_ makes retrieving web pages super easy. First, import the libary:
 
 ```python
 import requests
