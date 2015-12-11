@@ -253,13 +253,15 @@ The ```.replace()``` command can replace all instances of one word in a string w
 ####Applying this to OpenRefine
 Back to OpenRefine -- if you select ```Edit cells -> tranform...``` from any of the columns you should see a new form that looks something like this:
 
+<img src="http://i.imgur.com/MFEGIfp.png" width=800/>
+
 #####Setting the language
 Your language is likely currently set to OpenRefine's own custom scripting language, the "General Refine Expression Language (GREL)". If you click the language dropdown, you should see "Python / Jython" as an option - you'll want to select that to be able to use python methods in your code.
 
 ##### Using custom code
-The "expression" text box is where you'll write your code. Whatever you ```return``` from your function will be set as the new value for that cell.
+The "expression" text box is where you'll write your code. Whatever you ```return``` from your function will be set as the new value for each given cell.
 
-There are a few pre-defined variables that you can make use of, but the most important one is ```value```, which holds the original value of the cell you are currently editing. If you wanted to return the original value with periods stripped off, you would have something like
+There are a few pre-defined variables that you can make use of, but the most important one is ```value```, which holds the original value of each cell being edited. If you wanted to return the original value with periods stripped off, you would have something like
 
 ```python
 new_value = value.strip(".")
@@ -305,4 +307,4 @@ And that's it! We hope you've come out of this with a better idea of how to use 
 
 ------------------------------------------------------
 
-We'd love to hear your feedback -- let us know what you thought about the workshop here!
+We'd love to hear your feedback -- let us know what you thought about the workshop [here](https://goo.gl/kADqlA)!
