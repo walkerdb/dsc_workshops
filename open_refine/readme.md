@@ -303,7 +303,9 @@ Once you've finished cleaning up your dataset, just press "Export" in the upper-
 
 The file will be saved to your downloads folder. 
 
-And that's it! We hope you've come out of this with a better idea of how to use OpenRefine, and possibly with a few thoughts about how you'd apply it to your own work Thanks for coming!
+And that's it! We hope you've come out of this with a better idea of how to use OpenRefine, and possibly with a few thoughts about how you'd apply it to your own work.
+
+Thanks for coming!
 
 ------------------------------------------------------
 
