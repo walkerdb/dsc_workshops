@@ -68,11 +68,11 @@ This step is __absolutely essential__. The history of text encoding is actually 
 
 Have you ever seen characters that look like ```Ã¤``` when you know they should look like ```ä```? Whatever is displaying the text is trying to decode the raw data using the wrong standard. This happens all the time, and is generally a perennial pain when dealing with textual data. 
 
-One of the first few preview cells of our OpenRefine page should have a few special characters, but at the moment they likely look totally out of place. This usually means that the default decoding standard the program is using is wrong. To change it, you can click in the "character encoding" box, select one of the options, and see if that improves anything. Most of the time __UTF-8__ should be your go-to option, but if that doesn't work you can play around with some of the other standards and see what happens.
+One of the first few preview cells of our OpenRefine page should have a few special characters, but depending on what operating system you're running, they may look totally out of place (Windows users will see wonky symbols; Mac users will likely see the intended characters). When you see weird out-of-place symbols that usually means that the default decoding standard used by the program displaying the text is wrong. To change it, you can click in the "character encoding" box, select one of the options, and see if that improves anything. Most of the time __UTF-8__ should be your go-to option, but if that doesn't work you can play around with some of the other standards and see what happens.
 
 Generally, you'll always want to ensure the proper encoding is selected here before moving on to the next steps, or risk mangling any text that uses a character beyond the English basics.
 
-Once you're convinced things are as they should be, you can finalize things by clicking the "create project" button on the top-right of the page.
+Once you're convinced things are as they should be, you can finalize the data import by clicking the "create project" button on the top-right of the page.
 
 > ```yaml
 -> Set the character encoding to "UTF-8"; finish data setup
