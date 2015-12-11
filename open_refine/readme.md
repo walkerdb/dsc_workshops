@@ -34,7 +34,7 @@ This is intended to be an active tutorial, so please follow along with your own 
 4. [Saving the results](https://github.com/walkerdb/workshop_drafts/blob/master/README.md#saving-the-results)
 
 ## Setup
-OpenRefine is really easy to set up. Just download the latest version ([here](https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-mac-2.6-rc.2.dmg) for mac, [here](https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-win-2.6-rc.2.zip) for windows, and [here](https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-linux-2.6-rc.2.tar.gz) for linux), extract to wherever you'd like to keep it, then open up the "OpenRefine" program.
+OpenRefine is really easy to set up. All you need to do is download the latest version ([here](https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-mac-2.6-rc.2.dmg) for mac, [here](https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-win-2.6-rc.2.zip) for windows, and [here](https://github.com/OpenRefine/OpenRefine/releases/download/2.6-rc.2/openrefine-linux-2.6-rc.2.tar.gz) for linux), extract to wherever you'd like to keep it, then open up the "OpenRefine" program.
 
 You'll also want to make sure you have a current version of Python installed.
 
@@ -42,11 +42,11 @@ You'll also want to make sure you have a current version of Python installed.
 -> Download and open OpenRefine
 ```
 
-This should open a command line (which you don't need to worry about) and a browser window, which is where the program's GUI runs. You can think of it as an app living in your browser, but really you can treat it like any other application. If you ever accidentally close your browser window, you can get back to the app just by entering ```localhost:3333``` in the browser's address bar.
+Running OpenRefine should open a command line (which you don't need to worry about) as well as a browser window, which serves as the program's GUI. You can think of it just as an app living in your browser. If you ever accidentally close your browser window, you can get back to the app by entering ```localhost:3333``` in the browser's address bar.
 
 
 ## Using OpenRefine
-For the rest of this workshop, we will be working with this example metadata file, taken from a real project. (just right-click and press "save as" to download). We'd like to use it in a research project, but at the moment it's too messy to reliably use. We technically _could_ clean it by hand, but with thousands of rows it would take days to do manually. Here we'll do it in just a few minutes.
+For the rest of this workshop, we will be working with [this example metadata file](https://github.com/walkerdb/dsc_workshops/raw/master/open_refine/BSO_archive_dataset.csv), taken from a real project. (right-click and select "save as" to download). We'd like to use it in a research project, but at the moment it's too messy to reliably use. We technically _could_ clean it by hand, but with thousands of rows it would take days to do manually. Here we'll do it in just a few minutes.
 
 > ```yaml
 -> Download the dataset!
@@ -54,7 +54,7 @@ For the rest of this workshop, we will be working with this example metadata fil
 
 
 ## Creating a project
-To start a new project, just click the "create project" button on the top-left of the page, choose an input file to use, then click "next".
+To start a new project, click the "create project" button on the top-left of the page, choose an input file to use, then click "next".
 
 > ```yaml
 -> Create a new project and import the dataset
@@ -81,7 +81,7 @@ Once you're convinced things are as they should be, you can finalize things by c
 
 ##Editing data
 
-You see those little upside-down triangles on top of each of the data columns? They are your portal to performing just about every possible action on the dataset. Clicking on one of them brings up a host of options, any of which if selected will be applied to that entire column of data. There are two primary kinds of operations you can access through these menus:
+You see those little upside-down triangles on top of each of the data columns? They are your portal to performing almost every possible action on the dataset. Clicking on one of them brings up a host of options, any of which if selected will be applied to that entire column of data. There are two primary kinds of operations you can access through these menus:
 
 1. Predefined common-use transformations
 2. Custom transformation commands, which you can write in one of the several scripting languages supported by OpenRefine. __Python__ is one of them.
@@ -104,7 +104,7 @@ There are a number of columns where, for whatever reason, only the first row in 
  
 
 ####Splitting one column into several columns
-You'll notice the "Composer: Work" column is really holding two different categories of data: both composers and piece titles. We'd like there to be one column for each of those parts. OpenRefine makes this easy: just select ```Edit column -> Split into several columns...```. This will bring up a dialog box asking for a few options: what string to split the column on, whether you'd like to keep the old column afterwards, the maximum number of columns to split the data into, etc. Here's how this works:
+You'll notice the "Composer: Work" column is really holding two different categories of data: both composers and piece titles. We'd like there to be one column for each of those parts. OpenRefine can do this for you if you select ```Edit column -> Split into several columns...```. This will bring up a dialog box asking for a few options: what string to split the column on, whether you'd like to keep the old column afterwards, the maximum number of columns to split the data into, etc. Here's how this works:
 
 If I have a column with cells in this form:
 ```
@@ -145,9 +145,9 @@ Here's what the clustering interface should look like:
 
 <img src="http://i.imgur.com/ZzoqaSB.png" width=800/>
 
-In this case it has found clusters of related strings using the "fingerprint" clustering method. To normalize each entry in a given cluster to one value, just click on the name you'd like them all to be changed to for every result in the list, and press the "Merge selected and re-cluster" button.
+In this case it has found clusters of related strings using the "fingerprint" clustering method. To normalize each entry in a given cluster to one value, all you need to do is click on the name you'd like to change them all to for every cluster in the list, then press the "Merge selected and re-cluster" button when you're done.
 
-I've personally found OpenRefine's clustering to be one of its most useful functions: To give just one example, I was able to normalize all of the control-access terms used in the Bentley Historical Library's EAD finding-aids (~30,000 entries) in just a few hours, and have used it countless times in personal projects. It's especially useful when dealing with hand-entered data (which is likely to have typos), or when reconciling terms used across multiple datasets.
+I've personally found OpenRefine's clustering to be one of its most useful functions: To give just one example, I was able to normalize all of the control-access terms used in the Bentley Historical Library's EAD finding-aids (~30,000 entries) in only a few hours, and have used it countless times in personal projects. It's especially useful when dealing with hand-entered data (which is likely to have typos), or when reconciling terms used across multiple datasets.
 
 > ```yaml
 -> Try running the cluster/edit function on the Composer column and the Work column to clean them up a bit. 
@@ -168,7 +168,7 @@ In addition to the prebuilt options, OpenRefine allows you to write your own cod
  
 
 #### Text editing with Python
-One of Python's greatest strengths lies in its ability to easily manipulate text, and it provides a number of built-in functions to cover common tasks. We'll be exploring some of these using __IDLE__, a prettified python interpreter that should have come bundled with your python installation. If you can't find a copy of IDLE on your computer by searching for it, you can instead just open up a command line or terminal and type ```python```. This will give you the same basic functionality, just not in color.
+One of Python's greatest strengths lies in its ability to easily manipulate text, and it provides a number of built-in functions to cover common tasks. We'll be exploring some of these using __IDLE__, a prettified python interpreter that should have come bundled with your python installation. If you can't find a copy of IDLE on your computer by searching for it, you can instead open up a command line or terminal and type ```python```. This will give you the same basic functionality, just not in color.
 
 > ```yaml
 -> Open up IDLE, or, failing that, start up python via a command line. This is where you'll be trying out the code below.
@@ -177,7 +177,7 @@ One of Python's greatest strengths lies in its ability to easily manipulate text
  
 
 #####Concatenating strings
-In python a segment of text, called a _string_, is designated by enclosing some selection of text in quotes, like ```"this"```. Strings can have all sorts of operations called on them. You can join multiple strings together just by adding them:
+In python a segment of text, called a _string_, is designated by enclosing some selection of text in quotes, like ```"this"```. Strings can have all sorts of operations called on them. You can join multiple strings together by adding them:
 
 ```python
 >>> "string 1" + ": " + "string 2"
@@ -216,7 +216,7 @@ When you split a string, you get back a python ```list```, which you can think o
  
 
 #####Stripping strings
-You can strip an arbitrary selection of characters from the ends of a string with the ```.strip()``` command. By default the command just removes whitespace characters from the left and right ends of a string, but if you pass it another string it will also strip each of the provided characters individually. For example:
+You can strip an arbitrary selection of characters from the ends of a string with the ```.strip()``` command. By default the command only removes whitespace characters from the left and right ends of a string, but if you pass it another string it will instead strip each of the characters in the passed string individually. For example:
 
 ```python
 >>>" surrounded by whitespace ".strip()
@@ -272,7 +272,7 @@ If you just wanted to change every cell to "yolo", the command would look like t
 return "yolo"
 ```
 
-If you ever want to use the data from another cell in the same row in your method, use this variable exactly, just replacing "column name" with the name of the column you're looking for: ```cells["column name"]["value"]```. Also, if you ever want to repeat code you used in some other transformation, you should be able to reload it by clicking the "history" link in the transform box and selecting one of the past commands.
+If you ever want to use the data from another cell in the same row in your method, use the following variable exactly, replacing "column name" with the name of the column you're looking for: ```cells["column name"]["value"]```. Also, if you ever want to repeat code you used in some other transformation, you should be able to reload it by clicking the "history" link in the transform box and selecting one of the past commands.
 
 
 #####Try your own!
