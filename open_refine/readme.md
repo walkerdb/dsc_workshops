@@ -11,7 +11,7 @@ This is intended to be an active tutorial, so please follow along with your own 
 
 ###Table of contents
 
-1. [Setup](https://github.com/walkerdb/workshop_drafts/blob/master/README.md#setup)
+1. [Setup](https://github.com/walkerdb/dsc_workshops/blob/master/open_refine/readme.md#setup)
 2. [Creating an OpenRefine project](https://github.com/walkerdb/dsc_workshops/blob/master/open_refine/readme.md#creating-a-project)
     1. [Dealing with character encodings](https://github.com/walkerdb/dsc_workshops/blob/master/open_refine/readme.md#dealing-with-character-encodings)
 3. [Editing data](https://github.com/walkerdb/dsc_workshops/blob/master/open_refine/readme.md#editing-data)
@@ -62,7 +62,7 @@ To start a new project, click the "create project" button on the top-left of the
 
 You should now be on a page that shows a preview of what OpenRefine thinks the data should look like, along with a set of options. Here you can set things like what kind of input type the file is and some of the specifics on how to read each of those types. For the most part the program should automatically pick the best settings, but you should always take a look at the preview to make sure things look like they should.
 
-### dealing with character encodings
+### Dealing with character encodings
 
 This step is __absolutely essential__. The history of text encoding is [actually pretty fascinating](http://www.joelonsoftware.com/articles/Unicode.html), but the end result today is that there are countless standards for how to encode what an "a" looks like in binary, and most of them are incompatible with each other. 
 
