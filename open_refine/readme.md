@@ -64,7 +64,7 @@ You should now be on a page that shows a preview of what OpenRefine thinks the d
 
 ### Dealing with character encodings
 
-This step is __absolutely essential__. The history of text encoding is actually pretty fascinating (if you want to check it out, skip down to the "A Historical Perspective" section in [this link](http://www.joelonsoftware.com/articles/Unicode.html), but the end result today is that there are countless standards for encoding an "a" in binary, and most of them are incompatible with each other. 
+This step is __absolutely essential__. The history of text encoding is actually pretty fascinating (if you want to check it out, skip down to the "A Historical Perspective" section in [this link](http://www.joelonsoftware.com/articles/Unicode.html)), but the end result today is that there are countless standards for encoding an "a" in binary, and most of them are incompatible with each other. 
 
 Have you ever seen characters that look like ```Ã¤``` when you know they should look like ```ä```? Whatever is displaying the text is trying to decode the raw data using the wrong standard. This happens all the time, and is generally a perennial pain when dealing with textual data. 
 
