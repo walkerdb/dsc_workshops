@@ -1,7 +1,7 @@
 # Cleaning data with OpenRefine + Python
 
 ### Intro
-OpenRefine is an incredibly useful open-source program meant to simplify the process of cleaning, normalizing, and transforming data. It should be one of the first tools in the toolbelt of anyone who works with metadata - be they academics, librarians, archivists or programmers. In this tutorial we'll work through some of the basics on how OpenRefine can be used with Python to clean a typical dataset, and hopefully give enough base knowledge that you can feel comfortable using the tool in your own work.
+OpenRefine is an incredibly useful open-source program meant to simplify the process of cleaning, normalizing, and transforming data. It should be one of the first tools in the toolkit of anyone who works with metadata - be they academics, librarians, archivists or programmers. In this tutorial we'll work through some of the basics on how OpenRefine can be used with Python to clean a typical dataset, and hopefully give enough base knowledge that you can feel comfortable using the tool in your own work.
 
 This is intended to be an active tutorial, so please follow along with your own copy of OpenRefine as we move along! Each section will begin with a description of some kind of functionality, possibly with a few examples, then close with a task that you should try on your own. Tasks will be marked like this:
 
