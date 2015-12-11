@@ -145,7 +145,7 @@ Here's what the clustering interface should look like:
 
 <img src="http://i.imgur.com/ZzoqaSB.png" width=800/>
 
-In this case it has found clusters of related strings using the "fingerprint" clustering method. To normalize each entry in a given cluster to one value, all you need to do is click on the name you'd like to change them all to for every cluster in the list, then press the "Merge selected and re-cluster" button when you're done.
+In this case it has found clusters of related strings using the "fingerprint" clustering method. To normalize each entry in a given cluster to one value, just click on the ideal name of each found cluster (or optionally type in your own value on the right), then press the "Merge selected and re-cluster" button when you're done.
 
 I've personally found OpenRefine's clustering to be one of its most useful functions: To give just one example, I was able to normalize all of the control-access terms used in the Bentley Historical Library's EAD finding-aids (~30,000 entries) in only a few hours, and have used it countless times in personal projects. It's especially useful when dealing with hand-entered data (which is likely to have typos), or when reconciling terms used across multiple datasets.
 
