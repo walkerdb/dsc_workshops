@@ -57,7 +57,7 @@ For the rest of this workshop, we will be working with [this example metadata fi
 To start a new project, click the "create project" button on the top-left of the page, choose an input file to use, then click "next".
 
 > ```yaml
--> Create a new project and import the dataset
+-> Create a new project and import your data
 ```
 
 You should now be on a page that shows a preview of what OpenRefine thinks the data should look like, along with a set of options. Here you can set things like what kind of input type the file is and some of the specifics on how to read each of those types. For the most part the program should automatically pick the best settings, but you should always take a look at the preview to make sure things look like they should.
