@@ -187,7 +187,7 @@ In python a segment of text, called a _string_, is designated by enclosing some 
  
 
 #####Splitting strings
-You can split one string into a list of multiple strings with the ```.split()``` command. If you don't git the command any arguments it splits the string by its whitespace, otherwise it splits by whatever string you feed into it:
+You can split one string into a list of multiple strings with the ```.split()``` command. If you don't give the command any arguments it splits the string by its whitespace, otherwise it splits by whatever string you feed into it:
 ```python
 >>> "I love turtles".split()
 ["I", "love", "turtles"]
