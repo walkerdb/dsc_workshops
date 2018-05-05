@@ -6,10 +6,10 @@ OpenRefine is an incredibly useful open-source program meant to simplify the pro
 This is intended to be an active tutorial, so please follow along with your own copy of OpenRefine as we move along! Each section will begin with a description of some kind of functionality, possibly with a few examples, then close with a task that you should try on your own. Tasks will be marked like this:
 
 > ```yaml
--> Do the haka!
-```
+> -> Do the haka!
+> ```
 
-###Table of contents
+### Table of contents
 
 1. [Setup](https://github.com/walkerdb/dsc_workshops/blob/master/open_refine/readme.md#setup)
 2. [Creating an OpenRefine project](https://github.com/walkerdb/dsc_workshops/blob/master/open_refine/readme.md#creating-a-project)
@@ -39,8 +39,8 @@ OpenRefine is really easy to set up. All you need to do is download the latest v
 You'll also want to make sure you have a current version of Python installed.
 
 > ```yaml
--> Download and open OpenRefine
-```
+> -> Download and open OpenRefine
+> ```
 
 Running OpenRefine should open a command line (which you don't need to worry about) as well as a browser window, which serves as the program's GUI. You can think of it just as an app living in your browser. If you ever accidentally close your browser window, you can get back to the app by entering ```localhost:3333``` in the browser's address bar.
 
@@ -49,16 +49,16 @@ Running OpenRefine should open a command line (which you don't need to worry abo
 For the rest of this workshop, we will be working with [this example metadata file](https://github.com/walkerdb/dsc_workshops/raw/master/open_refine/BSO_archive_dataset.csv), taken from a real project. (right-click and select "save as" to download). We'd like to use it in a research project, but at the moment it's too messy to reliably use. We technically _could_ clean it by hand, but with thousands of rows it would take days to do manually. Here we'll do it in just a few minutes.
 
 > ```yaml
--> Download the dataset!
-```
+> -> Download the dataset!
+> ```
 
 
 ## Creating a project
 To start a new project, click the "create project" button on the top-left of the page, choose an input file to use, then click "next".
 
 > ```yaml
--> Create a new project and import your data
-```
+> -> Create a new project and import your data
+> ```
 
 You should now be on a page that shows a preview of what OpenRefine thinks the data should look like, along with a set of options. Here you can set things like what kind of input type the file is and some of the specifics on how to read each of those types. For the most part the program should automatically pick the best settings, but you should always take a look at the preview to make sure things look like they should.
 
@@ -75,11 +75,11 @@ Generally, you'll always want to ensure the proper encoding is selected here bef
 Once you're convinced things are as they should be, you can finalize the data import by clicking the "create project" button on the top-right of the page.
 
 > ```yaml
--> Set the character encoding to "UTF-8"; finish data setup
-```
+> -> Set the character encoding to "UTF-8"; finish data setup
+> ```
 
 
-##Editing data
+## Editing data
 
 You see those little upside-down triangles on top of each of the data columns? They are your portal to performing almost every possible action on the dataset. Clicking on one of them brings up a host of options, any of which if selected will be applied to that entire column of data. There are two primary kinds of operations you can access through these menus:
 
@@ -88,22 +88,22 @@ You see those little upside-down triangles on top of each of the data columns? T
 
 We'll go through these two categories in more depth below.
 
-###Prebuilt transformations
+### Prebuilt transformations
 OpenRefine supplies a number of pre-built commands that cover a number of common use-cases. Here are a few of the more common options:
 
  
 
-####Filling down data
+#### Filling down data
 There are a number of columns where, for whatever reason, only the first row in a related set of rows contains any value. We want full notated data for every row, so how can we make that happen? Easy: just select ```Edit cells -> Fill down```. This will go down the column and fill in each blank cell with the most recent value that came before it, which is exactly what we want. Just be careful that you don't fill down columns that shouldn't be filled.
 
 > ```yaml
--> try filling down all the columns that need filling
--> [note: do not fill down the Soloist/Instrument column]
-```
+> -> try filling down all the columns that need filling
+> -> [note: do not fill down the Soloist/Instrument column]
+> ```
 
  
 
-####Splitting one column into several columns
+#### Splitting one column into several columns
 You'll notice the "Composer: Work" column is really holding two different categories of data: both composers and piece titles. We'd like there to be one column for each of those parts. OpenRefine can do this for you if you select ```Edit column -> Split into several columns...```. This will bring up a dialog box asking for a few options: what string to split the column on, whether you'd like to keep the old column afterwards, the maximum number of columns to split the data into, etc. Here's how this works:
 
 If I have a column with cells in this form:
@@ -122,23 +122,23 @@ I wouldn't want to blindly split by the ": " character, since I'd also end up sp
 Once you've split a column, you can give a new name to each resulting column by selecting ```Edit column -> Rename this column```
 
 > ```yaml
--> Try splitting the "Composer: Work" column into two columns, and give them new names
-```
+> -> Try splitting the "Composer: Work" column into two columns, and give them new names
+> ```
 
  
 
-####Cleaning up whitespace
+#### Cleaning up whitespace
 Excess whitespace is a very common and sometimes hard to diagnose problem: a program will categorize ```"Emily Dickinson"```, ```"Emily Dickinson "```, and ```"Emily  Dickinson"``` as three different strings, but these kinds of differences can be difficult for a human to spot. 
 
 OpenRefine has a few functions to automate cleaning these issues: ```Edit cells -> Common transformations -> Trim leading and trailing whitespace``` and ```Edit cells -> Common transformations -> Collapse consecutive whitespace```.
 
 > ```yaml
--> Try these out on the new "Composer" column.
-```
+> -> Try these out on the new "Composer" column.
+> ```
 
  
 
-####Normalization through clustering
+#### Normalization through clustering
 This is, to me, by far the coolest functionality in OpenRefine. The basic gist is it runs one of several clustering algorithms to find strings that are slightly different but are still likely to be the same entity, then provides a simple interface to manually choose which version to normalize each instance into. You can find it via ```Edit cells -> Cluster and edit```.
 
 Here's what the clustering interface should look like:
@@ -150,13 +150,13 @@ In this case it has found clusters of related strings using the "fingerprint" cl
 I've personally found OpenRefine's clustering to be one of its most useful functions: To give just one example, I was able to normalize all of the control-access terms used in the Bentley Historical Library's EAD finding-aids (~30,000 entries) in only a few hours, and have used it countless times in personal projects. It's especially useful when dealing with hand-entered data (which is likely to have typos), or when reconciling terms used across multiple datasets.
 
 > ```yaml
--> Try running the cluster/edit function on the Composer column and the Work column to clean them up a bit. 
--> Does anything change when you try different Keying methods?
-```
+> -> Try running the cluster/edit function on the Composer column and the Work column to clean them up a bit. 
+> -> Does anything change when you try different Keying methods?
+> ```
 
  
 
-####The Undo/Redo tab
+#### The Undo/Redo tab
 If you look over to the upper-left side of the page, you should see a tab called "Undo / Redo". If you select this you can see your full edit history from the beginning of the project, and you should be able to seamlessly roll back to any previous point in the project. This is incredibly useful if you ever decide you want to undo an edit, or see how much things have changed from a given point.
 
  
@@ -171,12 +171,12 @@ In addition to the prebuilt options, OpenRefine allows you to write your own cod
 One of Python's greatest strengths lies in its ability to easily manipulate text, and it provides a number of built-in functions to cover common tasks. We'll be exploring some of these using __IDLE__, a prettified python interpreter that should have come bundled with your python installation. If you can't find a copy of IDLE on your computer by searching for it, you can instead open up a command line or terminal and type ```python```. This will give you the same basic functionality, just not in color.
 
 > ```yaml
--> Open up IDLE, or, failing that, start up python via a command line. This is where you'll be trying out the code below.
-```
+> -> Open up IDLE, or, failing that, start up python via a command line. This is where you'll be trying out the code below.
+> ```
 
  
 
-#####Concatenating strings
+##### Concatenating strings
 In python a segment of text, called a _string_, is designated by enclosing some selection of text in quotes, like ```"this"```. Strings can have all sorts of operations called on them. You can join multiple strings together by adding them:
 
 ```python
@@ -186,7 +186,7 @@ In python a segment of text, called a _string_, is designated by enclosing some 
 
  
 
-#####Splitting strings
+##### Splitting strings
 You can split one string into a list of multiple strings with the ```.split()``` command. If you don't give the command any arguments it splits the string by its whitespace, otherwise it splits by whatever string you feed into it:
 ```python
 >>> "I love turtles".split()
@@ -197,9 +197,9 @@ You can split one string into a list of multiple strings with the ```.split()```
 ```
 
 > ```yaml
--> In IDLE, try splitting the following string by its punctuation:
-"Shaken; not stirred"
-```
+> -> In IDLE, try splitting the following string by its punctuation:
+> "Shaken; not stirred"
+> ```
 
 When you split a string, you get back a python ```list```, which you can think of as a container for individual pieces of data. To get at specific pieces of data in a list, you access them by using their "index" in the list, which starts at 0 for the first element and goes up from there:
 
@@ -215,7 +215,7 @@ When you split a string, you get back a python ```list```, which you can think o
 
  
 
-#####Stripping strings
+##### Stripping strings
 You can strip an arbitrary selection of characters from the ends of a string with the ```.strip()``` command. By default the command only removes whitespace characters from the left and right ends of a string, but if you pass it another string it will instead strip each of the characters in the passed string individually. For example:
 
 ```python
@@ -229,13 +229,13 @@ You can strip an arbitrary selection of characters from the ends of a string wit
 There are also variants of strip that work only on the left or right side of a string: ```lstrip()``` and ```rstrip()```.
 
 > ```yaml
--> Try stripping the excess punctuation from this string:
-",-What do you call a fake noodle? An impasta..."
-```
+> -> Try stripping the excess punctuation from this string:
+> ",-What do you call a fake noodle? An impasta..."
+> ```
 
  
 
-#####Replacing words in a string
+##### Replacing words in a string
 The ```.replace()``` command can replace all instances of one word in a string with another. Here's how to use it:
 
 ```python
@@ -244,18 +244,18 @@ The ```.replace()``` command can replace all instances of one word in a string w
 ```
 
 > ```yaml
--> Try replacing "Blueberry" with the item of your choice:
-"Blueberry pie is clearly the best of the pies."
-```
+> -> Try replacing "Blueberry" with the item of your choice:
+> "Blueberry pie is clearly the best of the pies."
+> ```
 
  
 
-####Applying this to OpenRefine
+#### Applying this to OpenRefine
 Back to OpenRefine -- if you select ```Edit cells -> tranform...``` from any of the columns you should see a new form that looks something like this:
 
 <img src="http://i.imgur.com/MFEGIfp.png" width=800/>
 
-#####Setting the language
+##### Setting the language
 Your language is likely currently set to OpenRefine's own custom scripting language, the "General Refine Expression Language (GREL)". If you click the language dropdown, you should see "Python / Jython" as an option - you'll want to select that to be able to use python methods in your code.
 
 ##### Using custom code
@@ -277,24 +277,24 @@ return "yolo"
 If you ever want to use the data from another cell in the same row in your method, use the following variable exactly, replacing "column name" with the name of the column you're looking for: ```cells["column name"]["value"]```. Also, if you ever want to repeat code you used in some other transformation, you should be able to reload it by clicking the "history" link in the transform box and selecting one of the past commands.
 
 
-#####Try your own!
+##### Try your own!
 You'll notice that the name of the first Conductor is misspelled. Can you write a transformation that replaces the misspelled name in every cell with the proper name? ("Hcnschel" -> "Henschel")
 
 > ```yaml
--> Use a transformation to fix the misspelling in the conductor name
-```
+> -> Use a transformation to fix the misspelling in the conductor name
+> ```
 
 It looks like the conductors also all end with a period. Can you fix that too?
 
 > ```yaml
--> Use a transformation to remove the trailing periods
-```
+> -> Use a transformation to remove the trailing periods
+> ```
 
 Finally, since we are rational human beings who believe in standards and things making any logical sense, we'd like to change the date format for the Date column from MM/DD/YYYY to YYYY-MM-DD.
 
 > ```yaml
--> Transform the date format from MM/DD/YYYY to YYYY-MM-DD
-```
+> -> Transform the date format from MM/DD/YYYY to YYYY-MM-DD
+> ```
 
 That one is a little more tricky, but totally doable. Don't be afraid to ask for help if you're running into a wall.
 
